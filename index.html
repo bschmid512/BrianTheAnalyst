@@ -3,137 +3,216 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brian Schmidt | Data Analyst Portfolio</title>
-  <!-- Tailwind CSS -->
+  <meta name="description" content="Brian Schmidt – Data Reporting & Renewable-Energy Analyst Portfolio" />
+  <title>Brian Schmidt | Data Analyst</title>
+
+  <!-- Tailwind (v3 CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- Navigation -->
-  <header class="bg-white shadow fixed w-full z-50">
-    <div class="container mx-auto flex justify-between items-center p-4">
-      <a href="#" class="font-bold text-xl">BrianSchmidt<span class="text-indigo-600">.</span></a>
-      <nav class="space-x-4 hidden md:block">
-        <a href="#about" class="hover:text-indigo-600">About</a>
-        <a href="#skills" class="hover:text-indigo-600">Skills</a>
-        <a href="#projects" class="hover:text-indigo-600">Projects</a>
-        <a href="#experience" class="hover:text-indigo-600">Experience</a>
-        <a href="#contact" class="hover:text-indigo-600">Contact</a>
+<body class="antialiased text-gray-800 bg-gray-50">
+
+  <!-- ========== Navbar ========== -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <a href="#home" class="text-xl font-semibold">Brian&nbsp;Schmidt</a>
+
+      <!-- Desktop links -->
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a href="#projects" class="hover:text-blue-600">Projects</a>
+        <a href="#experience" class="hover:text-blue-600">Experience</a>
+        <a href="#skills" class="hover:text-blue-600">Skills</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
       </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-gray-200 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round"
+             stroke-linejoin="round" stroke-width="2"
+             d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
     </div>
+
+    <!-- Mobile menu -->
+    <nav id="mobileMenu" class="md:hidden hidden bg-white border-t">
+      <a href="#projects" class="block px-6 py-3 hover:bg-gray-100">Projects</a>
+      <a href="#experience" class="block px-6 py-3 hover:bg-gray-100">Experience</a>
+      <a href="#skills" class="block px-6 py-3 hover:bg-gray-100">Skills</a>
+      <a href="#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
+    </nav>
   </header>
-  
-  <main class="pt-24">
-    <!-- Hero -->
-    <section class="container mx-auto text-center py-20">
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Data Reporting & Compliance Analyst</h1>
-      <p class="text-lg md:text-xl max-w-2xl mx-auto">I craft reliable data pipelines and dashboards that turn raw operational data into clear, actionable insights.</p>
-      <div class="mt-8 space-x-4">
-        <a href="resume.pdf" class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700">Download Résumé</a>
-        <a href="#contact" class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg hover:bg-indigo-50">Contact Me</a>
-      </div>
-    </section>
 
-    <!-- About -->
-    <section id="about" class="bg-white py-16">
-      <div class="container mx-auto md:flex md:items-center md:gap-10">
-        <img src="profile.jpg" alt="Brian Schmidt" class="w-40 h-40 rounded-full mx-auto md:mx-0 object-cover shadow-lg" />
-        <div class="mt-8 md:mt-0">
-          <h2 class="text-3xl font-bold mb-4">About Me</h2>
-          <p class="leading-relaxed">Hi, I'm <span class="font-semibold">Brian Schmidt</span>, a data professional with <span class="font-semibold">5+ years</span> turning noisy enterprise data into trustworthy dashboards and regulatory‑ready reports. My journey spans public service at the VA, mega‑project analytics at Lendlease, and customer data quality at Spectrum Communications.</p>
+  <!-- ========== Hero ========== -->
+  <section id="home" class="pt-32 pb-24 text-center bg-gradient-to-b from-blue-50 to-gray-50">
+    <h1 class="text-4xl sm:text-5xl font-extrabold mb-4">Brian&nbsp;Schmidt</h1>
+    <p class="max-w-2xl mx-auto text-lg text-gray-600">
+      Renewable-Energy Data Analyst • KPI Wrangler • Process-Improvement Pro
+    </p>
+    <div class="mt-6 flex justify-center gap-6">
+      <a href="#contact" class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Hire&nbsp;Me</a>
+      <a href="assets/Brian_Schmidt_Resume.pdf" class="px-6 py-2 rounded border border-blue-600 text-blue-600 hover:bg-blue-50">Resume</a>
+    </div>
+  </section>
+
+  <!-- ========== Projects ========== -->
+  <section id="projects" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
+
+      <div class="grid gap-12 md:grid-cols-2">
+        <!-- Wind KPI Dashboard -->
+        <article class="bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
+          <img src="assets/wind-kpi.png" alt="Wind KPI Dashboard screenshot"
+               class="w-full h-56 object-cover rounded-t-lg">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Wind Farm KPI Dashboard</h3>
+            <p class="text-gray-600 mb-4">
+              Real-time availability, capacity factor, P50 variance and alarm tracking built with Chart.js, Tailwind, and raw JSON served from GitHub.
+            </p>
+            <a href="wind-kpi.html" class="text-blue-600 hover:underline mr-4">Live&nbsp;Demo</a>
+            <a href="https://github.com/yourusername/wind-kpi" class="text-blue-600 hover:underline">Source&nbsp;Code</a>
+          </div>
+        </article>
+
+        <!-- Add more project cards here -->
+        <article class="bg-gray-100 rounded-lg shadow hover:shadow-lg transition flex flex-col">
+          <img src="assets/powerbi-sop.png" alt="SOP Compliance Tracker screenshot"
+               class="w-full h-56 object-cover rounded-t-lg">
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-semibold mb-2">SOP Compliance Tracker</h3>
+            <p class="text-gray-600 mb-4 flex-1">
+              Power BI report automating FERC/EIA monthly submissions with anomaly detection rules to flag bad data before filing deadlines.
+            </p>
+            <div>
+              <a href="#" class="text-blue-600 hover:underline mr-4">Case&nbsp;Study</a>
+              <a href="https://github.com/yourusername/sop-tracker" class="text-blue-600 hover:underline">Source&nbsp;Code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Experience ========== -->
+  <section id="experience" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center">Professional Experience</h2>
+
+      <!-- VA -->
+      <div class="mb-10">
+        <h3 class="text-xl font-semibold">Data Analyst — U.S. Department of Veterans Affairs</h3>
+        <span class="text-sm text-gray-500">2021 – Present</span>
+        <ul class="list-disc pl-6 mt-2 text-gray-700 space-y-1">
+          <li>Built Splunk dashboards that cut ticket triage time 30% by surfacing recurring pain points.</li>
+          <li>Authored SOPs for data-quality checks; adopted across 4 business units.</li>
+        </ul>
+      </div>
+
+      <!-- Lendlease -->
+      <div class="mb-10">
+        <h3 class="text-xl font-semibold">Power BI / JDE Analyst — Lendlease Construction</h3>
+        <span class="text-sm text-gray-500">2018 – 2021</span>
+        <ul class="list-disc pl-6 mt-2 text-gray-700 space-y-1">
+          <li>Integrated JDE cost data with Power BI, delivering real-time margin dashboards for 12 projects.</li>
+          <li>Designed data-validation pipeline that flagged bad entries (<1 %) before payroll cutoff.</li>
+        </ul>
+      </div>
+
+      <!-- Spectrum -->
+      <div>
+        <h3 class="text-xl font-semibold">Billing & Reporting Specialist — Spectrum Communications</h3>
+        <span class="text-sm text-gray-500">2015 – 2018</span>
+        <ul class="list-disc pl-6 mt-2 text-gray-700 space-y-1">
+          <li>Analyzed BSG billing codes across 2 M customers; recovered $1.3 M in erroneous charges.</li>
+          <li>Developed Excel VBA tool reducing monthly reconciliation from 3 days to 4 hours.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Skills / Responsibilities ========== -->
+  <section id="skills" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center">Key Skills & Responsibilities</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h4 class="font-semibold mb-2">Data Accuracy & Availability</h4>
+          <p class="text-gray-600 text-sm">
+            Ensure integrity across monitoring, ticketing (CMMS), and analysis platforms.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <!-- Skills -->
-    <section id="skills" class="container mx-auto py-16">
-      <h2 class="text-3xl font-bold text-center mb-8">Toolbox & Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-xl shadow text-center">Power BI</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">Splunk</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">SQL</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">Python (Pandas)</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">Excel / VBA</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">SCADA / DAS</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">CMMS (Maximo)</div>
-        <div class="bg-white p-6 rounded-xl shadow text-center">ISO / FERC Reporting</div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="bg-gray-100 py-16">
-      <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-8">Featured Projects</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Project 1 -->
-          <article class="bg-white rounded-xl shadow overflow-hidden flex flex-col">
-            <img src="wind-kpi.png" alt="Wind Farm KPI Dashboard" class="h-48 w-full object-cover" />
-            <div class="p-6 flex-1 flex flex-col">
-              <h3 class="font-semibold text-xl mb-2">Wind Farm KPI Dashboard</h3>
-              <p class="mb-4 flex-1">Power BI & Python ETL merging SCADA, CMMS, and ISO data streams to monitor availability, alarm counts, and production vs P50 for a 200‑MW fleet.</p>
-              <a href="https://github.com/yourusername/wind-farm-kpi" class="text-indigo-600 font-medium hover:underline mt-auto">View on GitHub →</a>
-            </div>
-          </article>
-          <!-- Project 2 -->
-          <article class="bg-white rounded-xl shadow overflow-hidden flex flex-col">
-            <img src="kpi-dashboard.png" alt="VA Ticketing KPI Dashboard" class="h-48 w-full object-cover" />
-            <div class="p-6 flex-1 flex flex-col">
-              <h3 class="font-semibold text-xl mb-2">VA Ticketing KPI Dashboard</h3>
-              <p class="mb-4 flex-1">Splunk & Python pipeline aggregating 1M+ service tickets to visualize resolution SLAs and spotlight systemic blockers.</p>
-              <a href="https://github.com/yourusername/va-ticketing-kpi" class="text-indigo-600 font-medium hover:underline mt-auto">View on GitHub →</a>
-            </div>
-          </article>
-          <!-- Project 3 -->
-          <article class="bg-white rounded-xl shadow overflow-hidden flex flex-col">
-            <img src="billing-audit.png" alt="BSG Billing Audit Toolkit" class="h-48 w-full object-cover" />
-            <div class="p-6 flex-1 flex flex-col">
-              <h3 class="font-semibold text-xl mb-2">BSG Billing Audit Toolkit</h3>
-              <p class="mb-4 flex-1">Automated SQL ruleset and Excel macros that flagged anomalous billing codes, improving Spectrum’s data accuracy by 12%.</p>
-              <a href="https://github.com/yourusername/spectrum-billing-audit" class="text-indigo-600 font-medium hover:underline mt-auto">View on GitHub →</a>
-            </div>
-          </article>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h4 class="font-semibold mb-2">KPI Tracking (Wind/BESS)</h4>
+          <p class="text-gray-600 text-sm">
+            Edit, track, and report fault + production data to hit reliability targets.
+          </p>
         </div>
+
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h4 class="font-semibold mb-2">Regulatory Reporting</h4>
+          <p class="text-gray-600 text-sm">
+            EQR, FERC, EIA submissions—monthly, quarterly, and annual cycles.
+          </p>
+        </div>
+
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h4 class="font-semibold mb-2">SCADA / DAS / HMI</h4>
+          <p class="text-gray-600 text-sm">
+            Build alarms & historian queries to feed analytics pipelines.
+          </p>
+        </div>
+
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h4 class="font-semibold mb-2">Power BI & Excel</h4>
+          <p class="text-gray-600 text-sm">
+            Interactive dashboards, VBA automation, DAX modeling.
+          </p>
+        </div>
+
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h4 class="font-semibold mb-2">Stakeholder Communication</h4>
+          <p class="text-gray-600 text-sm">
+            Translate technical findings into commercial insights for offtakers & execs.
+          </p>
+        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Experience -->
-    <section id="experience" class="container mx-auto py-16">
-      <h2 class="text-3xl font-bold text-center mb-8">Professional Experience</h2>
-      <ul class="space-y-6">
-        <li class="bg-white p-6 rounded-xl shadow">
-          <h3 class="font-semibold text-xl">Data Analyst • U.S. Department of Veterans Affairs</h3>
-          <span class="text-sm text-gray-500">2023 – Present</span>
-          <ul class="list-disc pl-6 mt-2 space-y-2 text-gray-700">
-            <li>Designed Splunk dashboards to monitor ticket flow for 25k VA employees, reducing mean time to resolution by 18%.</li>
-            <li>Identified data integrity issues and established QC processes that cut bad‑data incidents by 30%.</li>
-            <li>Partnered with compliance teams to align reporting with federal data‑governance mandates.</li>
-          </ul>
-        </li>
-        <li class="bg-white p-6 rounded-xl shadow">
-          <h3 class="font-semibold text-xl">Business Intelligence Analyst • Lendlease Construction</h3>
-          <span class="text-sm text-gray-500">2020 – 2023</span>
-          <ul class="list-disc pl-6 mt-2 space-y-2 text-gray-700">
-            <li>Built Power BI dashboards surfacing schedule slip and cost variance across $500M portfolio, helping PMs trim overruns by 10%.</li>
-            <li>Developed ETL scripts pulling from JDE & Arcoro, enabling near‑real‑time project analytics.</li>
-            <li>Authored SOPs to standardize reporting workflows, adopted by 5 project offices.</li>
-          </ul>
-        </li>
-        <li class="bg-white p-6 rounded-xl shadow">
-          <h3 class="font-semibold text-xl">Data Quality Analyst • Spectrum Communications</h3>
-          <span class="text-sm text-gray-500">2017 – 2020</span>
-          <ul class="list-disc pl-6 mt-2 space-y-2 text-gray-700">
-            <li>Maintained BSG billing‑code database spanning 12M customer records; automated anomaly detection with SQL & Excel VBA.</li>
-            <li>Collaborated with finance to reconcile data discrepancies, preventing ~$2M in billing errors annually.</li>
-            <li>Documented data‑editing procedures and trained 15 analysts on new QC protocols.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+  <!-- ========== Contact ========== -->
+  <section id="contact" class="py-20 bg-blue-600 text-white">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-6">Let’s Work Together</h2>
+      <p class="mb-8">Have a data challenge or role in mind? Drop me a line.</p>
 
-    <!-- Contact -->
-    <section id="contact" class="bg-white py-16">
-      <div class="container mx-auto text-center">
-        <h2 class="text-3xl font-bold mb-4">Let's Connect</h2>
-        <p class="mb-6">Open to full‑time roles and freelance projects. Reach out and let’s talk data!</p>
-        <a href="mailto:youremail@example.com" class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700">youremail@example.com</a>
-        <div class="mt-6 space-x-4">
-          <a href="https://github.com/yourusername" class
+      <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
+        <a href="mailto:brian.schmidt@example.com"
+           class="px-6 py-3 rounded bg-white/10 hover:bg-white/20">Email&nbsp;Me</a>
+        <a href="https://www.linkedin.com/in/brian-schmidt"
+           class="px-6 py-3 rounded bg-white/10 hover:bg-white/20">LinkedIn</a>
+        <a href="https://github.com/yourusername"
+           class="px-6 py-3 rounded bg-white/10 hover:bg-white/20">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-6 text-center text-sm text-gray-500 bg-gray-50">
+    © 2025 Brian Schmidt. Built with Tailwind CSS & GitHub Pages.
+  </footer>
+
+  <!-- ========== Scripts ========== -->
+  <script>
+    /* Mobile menu toggle */
+    const btn  = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
