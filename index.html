@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Brian Schmidt – Data Reporting & Renewable-Energy Analyst Portfolio" />
   <title>Brian Schmidt | Data Analyst</title>
-<script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
@@ -14,30 +13,28 @@
 <body class="antialiased text-gray-800 bg-gray-50">
 
   <!-- NAVBAR -->
-  <header class="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="#home" class="text-xl font-semibold">Brian&nbsp;Schmidt</a>
-      <nav class="hidden md:flex gap-8 text-sm">
-        <a href="#home"       class="hover:text-blue-600">Home</a>
-        <a href="#projects"   class="hover:text-blue-600">Projects</a>
+  <header class="fixed top-0 inset-x-0 bg-white shadow z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="#home" class="font-bold text-xl">Brian Schmidt</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="#home" class="hover:text-blue-600">Home</a>
+        <a href="#projects" class="hover:text-blue-600">Projects</a>
         <a href="#experience" class="hover:text-blue-600">Experience</a>
-        <a href="#skills"     class="hover:text-blue-600">Skills</a>
-        <a href="#contact"    class="hover:text-blue-600">Contact</a>
+        <a href="#skills" class="hover:text-blue-600">Skills</a>
+        <a href="#contact" class="hover:text-blue-600">Contact</a>
       </nav>
       <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-gray-200 focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-             viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16" />
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
     <nav id="mobileMenu" class="md:hidden hidden bg-white border-t">
-      <a href="#home"       class="block px-6 py-3 hover:bg-gray-100">Home</a>
-      <a href="#projects"   class="block px-6 py-3 hover:bg-gray-100">Projects</a>
+      <a href="#home" class="block px-6 py-3 hover:bg-gray-100">Home</a>
+      <a href="#projects" class="block px-6 py-3 hover:bg-gray-100">Projects</a>
       <a href="#experience" class="block px-6 py-3 hover:bg-gray-100">Experience</a>
-      <a href="#skills"     class="block px-6 py-3 hover:bg-gray-100">Skills</a>
-      <a href="#contact"    class="block px-6 py-3 hover:bg-gray-100">Contact</a>
+      <a href="#skills" class="block px-6 py-3 hover:bg-gray-100">Skills</a>
+      <a href="#contact" class="block px-6 py-3 hover:bg-gray-100">Contact</a>
     </nav>
   </header>
 
@@ -48,313 +45,136 @@
       Renewable-Energy Data Analyst • KPI Wrangler • Process-Improvement Pro
     </p>
     <div class="mt-6 flex justify-center gap-6">
-      <a href="#contact"
-         class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Hire&nbsp;Me</a>
-      <a href="assets/Brian_Schmidt_Resume.pdf"
-         class="px-6 py-2 rounded border border-blue-600 text-blue-600 hover:bg-blue-50">Resume</a>
+      <a href="#contact" class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Hire&nbsp;Me</a>
+      <a href="assets/Brian_Schmidt_Resume.pdf" class="px-6 py-2 rounded border border-blue-600 text-blue-600 hover:bg-blue-50">Resume</a>
     </div>
   </section>
-<!-- ========== About Me ========== -->
-<section id="about" class="py-20 bg-gray-50">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-    
-    <!-- Your Photo -->
-    <div class="flex justify-center md:justify-end">
-      <img src="assets/profile.jpg" alt="Brian Schmidt" class="w-64 h-64 object-cover rounded-lg shadow-lg">
-    </div>
-    
-    <!-- About Text -->
-    <div>
-      <h2 class="text-3xl font-bold mb-4">About Me</h2>
-      <p class="text-gray-700 mb-4">
-        I’m a North Carolina native and proud University of North Carolina at Charlotte alum with over 7 years of experience as a data analyst. From the moment I cracked open my first spreadsheet, I found myself hooked on turning messy data into clear, actionable insights. After earning my Bachelor’s degree, I’ve spent my career partnering with teams across industries—driving efficiency, detecting data quality issues, and building dashboards that tell a story at a glance.
-      </p>
-      <p class="text-gray-700">
-        My true passion lies in solving complex problems: whether it’s automating a data-quality pipeline, uncovering production anomalies at a wind farm, or creating interactive visualizations that help stakeholders make informed decisions. When I’m not wrangling numbers, you’ll find me exploring the Blue Ridge Mountains, experimenting with home-brewed coffee, or geeking out over the latest Plotly chart types. I’m always excited to connect with fellow data enthusiasts, so feel free to reach out!
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ========== My Tool Set ========== -->
-<section id="tools" class="py-20 bg-orange-600 text-white">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold mb-8 text-center">My Tool Set</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
-
-      <!-- Python -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:python" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Python</span>
-      </div>
-
-      <!-- Tableau -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:tableau" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Tableau</span>
-      </div>
-
-      <!-- Power BI -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:power-bi" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Power BI</span>
-      </div>
-
-      <!-- DbVisualizer (fallback to generic DB icon) -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="mdi:database" data-width="32" data-height="32"></span>
-        <span class="font-semibold">DbVisualizer</span>
-      </div>
-
-      <!-- PostgreSQL -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:postgresql" data-width="32" data-height="32"></span>
-        <span class="font-semibold">PostgreSQL</span>
-      </div>
-
-      <!-- Excel -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:microsoft-excel" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Excel</span>
-      </div>
-
-      <!-- Anaconda -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:anaconda" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Anaconda</span>
-      </div>
-
-      <!-- Panel (fallback generic chart icon) -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="mdi:chart-areaspline" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Panel</span>
-      </div>
-
-      <!-- Pandas -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:pandas" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Pandas</span>
-      </div>
-
-      <!-- Seaborn (fallback generic heatmap icon) -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="mdi:chart-heatmap" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Seaborn</span>
-      </div>
-
-      <!-- HoloViews (fallback generic plot icon) -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="mdi:chart-line-stacked" data-width="32" data-height="32"></span>
-        <span class="font-semibold">HoloViews</span>
-      </div>
-
-      <!-- Scikit-Learn -->
-      <div class="flex items-center gap-3">
-        <span class="iconify" data-icon="logos:scikit-learn" data-width="32" data-height="32"></span>
-        <span class="font-semibold">Scikit-Learn</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-<!-- ========== My Skill Set ========== -->
-<section id="skills" class="py-20 bg-teal-800 text-white">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold mb-8 text-center">My Skill Set</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-      <!-- Column 1 -->
-      <div class="space-y-2 text-center">
-        <p>Data Transformation</p>
-        <p>Data Wrangling</p>
-        <p>Descriptive Analysis</p>
-        <p>Data Mapping</p>
-        <p>Relational Databases</p>
-      </div>
-
-      <!-- Column 2 -->
-      <div class="space-y-2 text-center">
-        <p>Storytelling with Data</p>
-        <p>K-Means Clustering</p>
-        <p>Exploratory Queries</p>
-        <p>PivotTables</p>
-        <p>ETL Automation</p>
-      </div>
-
-      <!-- Column 3 -->
-      <div class="space-y-2 text-center">
-        <p>Custom Dashboards</p>
-        <p>SQL Subqueries</p>
-        <p>Data Presentation</p>
-        <p>Regulatory Reporting</p>
-        <p>KPI Tracking</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 
   <!-- PROJECTS -->
   <section id="projects" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
       <div class="grid gap-12 md:grid-cols-2">
-        <!-- Wind KPI -->
-        <article class="bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
-          <img src="assets/wind-kpi.png"
-               alt="Wind KPI Dashboard screenshot"
-               class="w-full h-56 object-cover rounded-t-lg">
+
+        <!-- Wind KPI Dashboard card -->
+        <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Wind Farm KPI Dashboard</h3>
+            <h3 class="text-xl font-semibold mb-4">Wind-Turbine Performance ETL & KPI Dashboard</h3>
             <p class="text-gray-600 mb-4">
-              Real-time availability, capacity factor, P50 variance and alarm tracking—built with Chart.js, Tailwind, and raw JSON on GitHub.
+              Python ETL pipeline ingests wind sensor data, cleans and computes daily/monthly KPIs, and visualizes performance in Excel dashboards.
             </p>
-            <a href="wind-kpi.html" class="text-blue-600 hover:underline mr-4">Live Demo</a>
-            <a href="https://github.com/bschmid512/BrianTheAnalyst/tree/main/data/wind-kpi.json"
-               class="text-blue-600 hover:underline">Source Code</a>
+            <a href="https://github.com/bschmid512/portfolio_wind_etl" class="text-blue-600 hover:underline">Source Code</a>
           </div>
         </article>
-  <!-- Wind KPI turbine -->
-        <article class="bg-gray-100 rounded-lg shadow hover:shadow-lg transition">
-  <img src="assets/turbine-thumb.png" alt="Turbine monitor screenshot"
-       class="w-full h-56 object-cover rounded-t-lg">
-  <div class="p-6">
-    <h3 class="text-xl font-semibold mb-2">Turbine Monitor Simulator</h3>
-    <p class="text-gray-600 mb-4">
-      Interactive HMI-style dashboard with gauges, power curve chart and wind-rose—scrub through 24 hr of data with the slider.
-    </p>
-    <a href="wind-hmi.html" class="text-blue-600 hover:underline mr-4">Live Demo</a>
-    <a href="https://github.com/bschmid512/BrianTheAnalyst/tree/main/data/wind-detail.json"
-       class="text-blue-600 hover:underline">Data Source</a>
-  </div>
-</article>
 
-
-        <!-- SOP Tracker -->
-        <article class="bg-gray-100 rounded-lg shadow hover:shadow-lg transition flex flex-col">
-          <img src="assets/powerbi-sop.png"
-               alt="SOP Compliance Tracker screenshot"
-               class="w-full h-56 object-cover rounded-t-lg">
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-semibold mb-2">SOP Compliance Tracker</h3>
-            <p class="text-gray-600 mb-4 flex-1">
-              Power BI report automating FERC/EIA submissions with anomaly-detection rules to flag bad data before deadlines.
+        <!-- Turbine Monitor Simulator card -->
+        <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-4">Real-Time Turbine Sensor Simulator</h3>
+            <p class="text-gray-600 mb-4">
+              Node.js/Socket.io powered web app simulating live turbine sensor feeds, visualizing power output and status in real time.
             </p>
-            <div>
-              <a href="#" class="text-blue-600 hover:underline mr-4">Case Study</a>
-              <a href="https://github.com/bschmid512/BrianTheAnalyst"
-                 class="text-blue-600 hover:underline">Source Code</a>
-            </div>
+            <a href="#" class="text-gray-400 cursor-not-allowed">Source Code (private)</a>
           </div>
         </article>
+
+        <!-- SOP Tracker card -->
+        <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-4">Standard-Operating-Procedure Tracker</h3>
+            <p class="text-gray-600 mb-4">
+              Excel-based tracker with VBA macros to manage, version, and audit SOP documents across teams.
+            </p>
+            <a href="#" class="text-gray-400 cursor-not-allowed">Demo Link</a>
+          </div>
+        </article>
+
+        <!-- Live Energy Dashboard -->
+        <article class="bg-gray-100 rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-4">US Electricity Generation & Stability</h3>
+            <p class="text-gray-600 mb-4">
+              Interactive, live Streamlit dashboard showing monthly generation by source and renewables share. Click “Full Screen” for best experience.
+            </p>
+          </div>
+          <div class="w-full h-96">
+            <iframe
+              src="https://portfoliowindetl-qd7hsfqxfxumbgg7rjfbu.streamlit.app"
+              class="w-full h-full"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </article>
+  
       </div>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
   <section id="experience" class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center">Professional Experience</h2>
-
-      <!-- VA -->
-      <div class="mb-10">
-        <h3 class="text-xl font-semibold">Data Analyst — U.S. Department of Veterans Affairs</h3>
-        <span class="text-sm text-gray-500">2021 – Present</span>
-        <ul class="list-disc pl-6 mt-2 text-gray-700 space-y-1">
-          <li>Built Splunk dashboards that cut ticket triage time by 30% by surfacing recurring pain points.</li>
-          <li>Authored and documented SOPs for data-quality checks; adopted across four business units.</li>
-        </ul>
-      </div>
-
-      <!-- Lendlease -->
-      <div class="mb-10">
-        <h3 class="text-xl font-semibold">Power BI / JDE Analyst — Lendlease Construction</h3>
-        <span class="text-sm text-gray-500">2018 – 2021</span>
-        <ul class="list-disc pl-6 mt-2 text-gray-700 space-y-1">
-          <li>Integrated JDE cost data with Power BI, delivering real-time margin dashboards for 12 projects.</li>
-          <li>Designed data-validation pipeline that flagged bad entries (<1%) before payroll cutoff.</li>
-        </ul>
-      </div>
-
-      <!-- Spectrum -->
-      <div>
-        <h3 class="text-xl font-semibold">Billing & Reporting Specialist — Spectrum Communications</h3>
-        <span class="text-sm text-gray-500">2015 – 2018</span>
-        <ul class="list-disc pl-6 mt-2 text-gray-700 space-y-1">
-          <li>Analyzed BSG billing codes across 2 million customers; recovered $1.3 million in erroneous charges.</li>
-          <li>Developed an Excel VBA tool reducing monthly reconciliation from three days to four hours.</li>
-        </ul>
-      </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">Experience</h2>
+      <ul class="space-y-6">
+        <li>
+          <h3 class="text-xl font-semibold">Renewables Data Analyst, AES Corp</h3>
+          <p class="text-gray-600">Jun 2023 – Present</p>
+          <ul class="list-disc list-inside text-gray-600">
+            <li>Built ETL pipelines for wind & solar production metrics.</li>
+            <li>Automated QC reports and KPI dashboards in Excel & Python.</li>
+            <li>Collaborated with stakeholders to define data requirements.</li>
+          </ul>
+        </li>
+        <li>
+          <h3 class="text-xl font-semibold">Data Reporting Intern, GreenGrid Solutions</h3>
+          <p class="text-gray-600">Jan 2022 – May 2023</p>
+          <ul class="list-disc list-inside text-gray-600">
+            <li>Maintained daily generation reports using SQL & Power BI.</li>
+            <li>Improved data accuracy by 15% through validation scripts.</li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center">Key Skills & Responsibilities</h2>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Data Accuracy & Availability</h4>
-          <p class="text-gray-600 text-sm">
-            Ensure integrity across monitoring, ticketing (CMMS), and analysis platforms.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">KPI Tracking (Wind/BESS)</h4>
-          <p class="text-gray-600 text-sm">
-            Edit, track, and report fault + production data to hit reliability targets.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Regulatory Reporting</h4>
-          <p class="text-gray-600 text-sm">
-            EQR, FERC, EIA submissions—monthly, quarterly, and annual cycles.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">SCADA / DAS / HMI</h4>
-          <p class="text-gray-600 text-sm">
-            Build alarms & historian queries to feed analytics pipelines.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Power BI & Excel</h4>
-          <p class="text-gray-600 text-sm">
-            Interactive dashboards, VBA automation, DAX modeling.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h4 class="font-semibold mb-2">Stakeholder Communication</h4>
-          <p class="text-gray-600 text-sm">
-            Translate technical findings into commercial insights for offtakers & execs.
-          </p>
-        </div>
-
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">Skills & Tools</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">        
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:python"></span><p>Python</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:tailwindcss"></span><p>Tailwind CSS</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:powerbi"></span><p>Power BI</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:excel"></span><p>Excel (VBA)</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:streamlit-icon"></span><p>Streamlit</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:git-icon"></span><p>Git & GitHub</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:nodejs-icon"></span><p>Node.js</p></div>
+        <div><span class="iconify text-4xl mb-2" data-icon="logos:postgresql"></span><p>PostgreSQL</p></div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-20 bg-blue-600 text-white">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-6">Let’s Work Together</h2>
-      <p class="mb-8">Have a data challenge or role in mind? Drop me a line.</p>
-      <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
-        <a href="mailto:brian.schmidt@example.com"
-           class="px-6 py-3 rounded bg-white/10 hover:bg-white/20">Email&nbsp;Me</a>
-        <a href="https://www.linkedin.com/in/brian-schmidt"
-           class="px-6 py-3 rounded bg-white/10 hover:bg-white/20">LinkedIn</a>
-        <a href="https://github.com/bschmid512"
-           class="px-6 py-3 rounded bg-white/10 hover:bg-white/20">GitHub</a>
-      </div>
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">Contact Me</h2>
+      <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+        <div>
+          <label class="block mb-2 font-medium">Name</label>
+          <input type="text" name="name" required class="w-full border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label class="block mb-2 font-medium">Email</label>
+          <input type="email" name="email" required class="w-full border-gray-300 rounded px-3 py-2" />
+        </div>
+        <div>
+          <label class="block mb-2 font-medium">Message</label>
+          <textarea name="message" rows="4" class="w-full border-gray-300 rounded px-3 py-2"></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Send Message</button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -366,9 +186,9 @@
   <!-- SCRIPTS -->
   <script>
     // Mobile menu toggle
-    document.getElementById('menuBtn').addEventListener('click', () =>
-      document.getElementById('mobileMenu').classList.toggle('hidden')
-    );
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
   </script>
 </body>
 </html>
