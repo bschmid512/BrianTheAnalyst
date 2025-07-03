@@ -1,13 +1,19 @@
 {
   "site": "Wind Farm KPI Dashboard",
   "updated": "2025-07-02T16:30:00Z",
-  "kpis": [
-    { "label": "Turbines Online", "value": 47 },
-    { "label": "Avg Wind Speed (m/s)", "value": 11.8 },
-    { "label": "Capacity Factor (%)", "value": 42 }
-  ],
-  "trend": {
-    "labels": ["06:00","07:00","08:00","09:00"],
-    "values":  [38,41,40,42]
-  }
+
+  "kpis": {
+    "availability": 0.95,
+    "capacityFactor": 0.42,
+    "mtdProd": 12345,
+    "p50Target": 13000,
+    "openAlarms": 3
+  },
+
+  "prodTrend": [
+    { "date": "06:00", "mwh": 38, "p50": 40 },
+    { "date": "07:00", "mwh": 41, "p50": 40 },
+    { "date": "08:00", "mwh": 40, "p50": 40 },
+    { "date": "09:00", "mwh": 42, "p50": 40 }
+  ]
 }
