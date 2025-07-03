@@ -1,1 +1,28 @@
+name: Nightly Data-Quality Pipeline
+on:
+  schedule:
+    - cron: '0 2 * * *'   # every night at 02:00 UTC
+jobs:
+  qc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with: python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Run pipeline
+        run: |
+          python scripts/pipeline.py
+      - name: Commit & push reports
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add data/reports/*.html data/clean/*.csv
+          git commit -m "Nightly QC: $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
