@@ -100,14 +100,35 @@
           </div>
         </article>
 
-        <!-- SOP Tracker -->
-        <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
+    <!-- Energy Dashboard -->
+        <article class="bg-gray-100 rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-3">SOP Tracker with VBA</h3>
-            <p class="text-gray-600 mb-4">An Excel-based tracker enhanced with VBA macros for managing, versioning, and auditing standard operating procedures across teams.</p>
-            <a href="#" class="text-gray-400 cursor-not-allowed">Details (private)</a>
+            <h3 class="text-xl font-semibold mb-3">US Electricity Generation & Stability</h3>
+            <p class="text-gray-600 mb-4">Live Streamlit dashboard tracking U.S. electricity mix evolution, with interactive charts of monthly generation by source and renewable share.</p>
+            <button onclick="document.getElementById('energyDetails').classList.toggle('hidden')" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none">Show Details</button>
+            <div id="energyDetails" class="hidden p-4 bg-gray-50 rounded mb-4">
+              <ol class="list-decimal list-inside mb-2 text-gray-700">
+                <li><strong>Data Acquisition:</strong> Fetch monthly generation data via the EIA public API.</li>
+                <li><strong>Data Cleaning:</strong> Convert raw API output to structured CSV, parse dates, and compute shares.</li>
+                <li><strong>Dashboard:</strong> Build interactive charts with Streamlit and Plotly for filtering by source and date.</li>
+                <li><strong>Deployment:</strong> Host on Streamlit Cloud and embed here for live updates.</li>
+              </ol>
+              <p class="text-gray-700"><strong>Why It Matters:</strong> Transforms government data into an accessible visualization, highlighting the rise of renewables and seasonal trends in the U.S. power mix.</p>
+            </div>
+          </div>
+          <div class="w-full h-96">
+            <iframe
+              src="https://portfoliowindetl-qdx7thsfqfxumbgg7rjfbu.streamlit.app/?embedded=true"
+              class="w-full h-full"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
           </div>
         </article>
+
+      </div>
+    </div>
+  </section>
 
         <!-- Energy Dashboard -->
         <article class="bg-gray-100 rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
