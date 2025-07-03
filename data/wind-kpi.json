@@ -1,17 +1,75 @@
-{
-  "site": "Sky Ridge Wind – 200 MW",
-  "updated": "2025-06-30T12:00:00Z",
-  "kpis": {
-    "availability": 97.4,          // %
-    "capacityFactor": 41.2,        // %
-    "mtdProd": 25_460,             // MWh month-to-date
-    "p50Target": 26_800,           // MWh month-to-date budget
-    "openAlarms": 12
-  },
-  "prodTrend": [
-    {"date":"2025-06-01","mwh":820,"p50":860},
-    {"date":"2025-06-02","mwh":790,"p50":840},
-    ...
-    {"date":"2025-06-30","mwh":870,"p50":900}
-  ]
-}
+<section class="container mx-auto pt-28 pb-16" id="windApp">
+  <!-- Heading -->
+  <h1 class="text-4xl font-bold mb-2" id="siteName">Wind Farm KPI Dashboard</h1>
+  <p class="text-gray-500 mb-8" id="stamp">Loading …</p>
+
+  <!-- KPI cards -->
+  <div class="grid gap-6 md:grid-cols-5 mb-12">
+    <template id="kpiTpl">
+      <div class="bg-white rounded-xl shadow p-6 text-center">
+        <p class="text-sm uppercase tracking-wide text-gray-500"></p>
+        <p class="text-3xl font-extrabold mt-2"></p>
+      </div>
+    </template>
+  </div>
+
+  <!-- Trend chart -->
+  <canvas id="trendChart" class="bg-white rounded-xl shadow w-full h-96"></canvas>
+</section>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+(async () => {
+  /* 1. Fetch JSON */
+  const res   = await fetch('https://raw.githubusercontent.com/yourusername/yourrepo/main/data/wind-kpi.json');
+  const data  = await res.json();
+
+  /* 2. Populate static text */
+  document.getElementById('siteName').textContent = data.site;
+  document.getElementById('stamp').textContent    = `Updated ${new Date(data.updated).toLocaleString()}`;
+
+  /* 3. Render KPI cards */
+  const grid   = document.querySelector('#windApp .grid');
+  const tpl    = document.getElementById('kpiTpl').content;
+  const fmt    = (v, u='') => Intl.NumberFormat().format(v) + u;
+
+  const metrics = [
+    ['Availability',    fmt(data.kpis.availability, '%')],
+    ['Capacity Factor', fmt(data.kpis.capacityFactor, '%')],
+    ['MTD Prod',        fmt(data.kpis.mtdProd, ' MWh')],
+    ['P50 Target',      fmt(data.kpis.p50Target, ' MWh')],
+    ['Open Alarms',     fmt(data.kpis.openAlarms)]
+  ];
+
+  metrics.forEach(([label,val])=>{
+    const card = tpl.cloneNode(true);
+    card.querySelector('p').textContent = label;
+    card.querySelector('p + p').textContent = val;
+    grid.append(card);
+  });
+
+  /* 4. Build trend arrays */
+  const labels = data.prodTrend.map(d=>d.date);
+  const actual = data.prodTrend.map(d=>d.mwh);
+  const target = data.prodTrend.map(d=>d.p50);
+
+  /* 5. Draw Chart.js line chart */
+  new Chart(document.getElementById('trendChart'),{
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {label:'Actual MWh', data:actual, tension:.3, borderWidth:2},
+        {label:'P50 Target', data:target, tension:.3, borderDash:[6,4], borderWidth:2}
+      ]
+    },
+    options:{
+      responsive:true,
+      scales:{y:{title:{text:'MWh',display:true}}},
+      plugins:{legend:{position:'bottom'}}
+    }
+  });
+})();
+</script>
