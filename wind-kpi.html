@@ -72,7 +72,7 @@
       // ---- 1. Fetch JSON data ---------------------------------------------
       // Replace the raw URL with your repo & path
       const url = 'data/wind-kpi.json';
-      const res = await fetch(url);
+      const res = await fetch('./data/wind-kpi.json');
       if (!res.ok) {
         document.getElementById('stamp').textContent = 'Failed to load data.';
         return;
