@@ -61,71 +61,84 @@
 
   </main>
 
-  <script>
-  (async function(){
-    // 1. Fetch data
-    const res  = await fetch('data/wind-detail.json');
-    const js   = await res.json();
-    const D    = js.detail;
-    document.getElementById('siteName').textContent = js.site;
-    
-    // 2. Build trend line chart
-    const ctx = document.getElementById('trendChart');
-    const chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: D.map(d=>d.time.slice(11,16)),
-        datasets: [{
-          label: 'Power (kW)',
-          data: D.map(d=>d.power),
-          borderWidth: 2, tension: .3
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: { y:{title:{display:true,text:'kW'}}},
-        plugins:{legend:{display:false}}
-      }
+<script>
+(async function(){
+  // 1. Hard-wire the raw GitHub Pages URL for your JSON
+  const url = 'https://bschmid512.github.io/BrianTheAnalyst/data/wind-detail.json';
+  console.log('🔍 Fetching turbine data from:', url);
+
+  let js;
+  try {
+    const res = await fetch(url);
+    console.log('📡 HTTP status:', res.status);
+    if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+    js = await res.json();
+    console.log('✅ JSON payload:', js);
+  } catch (err) {
+    console.error('❌ Failed to load data:', err);
+    document.getElementById('siteName').textContent = 'Error loading data';
+    return;
+  }
+
+  // 2. Destructure & show your site name
+  const D = js.detail;
+  document.getElementById('siteName').textContent = js.site;
+
+  // 3. Build the Chart.js trend line as before
+  const ctx = document.getElementById('trendChart');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: D.map(d => d.time.slice(11,16)),
+      datasets: [{
+        label: 'Power (kW)',
+        data: D.map(d => d.power),
+        borderWidth: 2, tension: .3
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: { y:{ title:{display:true,text:'kW'} } },
+      plugins:{ legend:{ display:false } }
+    }
+  });
+
+  // 4. Wire up your slider
+  const slider = document.getElementById('timeSlider');
+  const stamp  = document.getElementById('timeStamp');
+  slider.max   = D.length - 1;
+
+  function update(i) {
+    const d = D[i];
+    document.getElementById('rotorSpeed').textContent = d.rotorSpeed.toFixed(1) + ' RPM';
+    document.getElementById('power').textContent      = d.power + ' kW';
+    document.getElementById('windSpeed').textContent  = d.windSpeed.toFixed(1) + ' m/s';
+    stamp.textContent = new Date(d.time).toLocaleString([], {
+      hour:'2-digit',minute:'2-digit',month:'numeric',day:'numeric'
     });
+    chart.setActiveElements([{datasetIndex:0,index:i}]);
+    chart.tooltip.setActiveElements([{datasetIndex:0,index:i}], {x:0,y:0});
+    chart.update();
+    drawRose(d.direction);
+  }
 
-    // 3. Simulator slider
-    const slider = document.getElementById('timeSlider');
-    const stamp  = document.getElementById('timeStamp');
+  slider.addEventListener('input', () => update(+slider.value));
+  update(0);
 
-    function update(i){
-      const d = D[i];
-      // Update metrics
-      document.getElementById('rotorSpeed').textContent = d.rotorSpeed.toFixed(1) + ' RPM';
-      document.getElementById('power').textContent      = d.power + ' kW';
-      document.getElementById('windSpeed').textContent  = d.windSpeed.toFixed(1) + ' m/s';
-      // Update timestamp
-      stamp.textContent = new Date(d.time).toLocaleString([], {
-        hour:'2-digit',minute:'2-digit',month:'numeric',day:'numeric'
-      });
-      // Highlight on chart
-      chart.setActiveElements([{datasetIndex:0,index:i}]);
-      chart.tooltip.setActiveElements([{datasetIndex:0,index:i}], {x:0,y:0});
-      chart.update();
-      // Optional: draw a simple wind rose sector
-      drawRose(d.direction);
-    }
-
-    slider.max = D.length - 1;
-    slider.addEventListener('input',()=> update(+slider.value));
-    update(0);
-
-    // 4. Simple wind‐rose fallback
-    function drawRose(deg){
-      const container = document.getElementById('rose');
-      container.innerHTML = ''; 
-      const arrow = document.createElement('div');
-      arrow.style.width = '0'; arrow.style.height = '0';
-      arrow.style.border = '20px solid transparent';
-      arrow.style.borderBottom = '30px solid teal';
-      arrow.style.transform = `rotate(${deg}deg)`;
-      container.append(arrow);
-    }
-  })();
-  </script>
+  // 5. Simple wind‐rose arrow
+  function drawRose(deg){
+    const c = document.getElementById('rose');
+    c.innerHTML = '';
+    const arrow = document.createElement('div');
+    Object.assign(arrow.style, {
+      width: '0', height: '0',
+      border: '20px solid transparent',
+      borderBottom: '30px solid teal',
+      transform: `rotate(${deg}deg)`
+    });
+    c.append(arrow);
+  }
+})();
+</script>
 </body>
 </html>
