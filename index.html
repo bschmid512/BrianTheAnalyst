@@ -12,7 +12,7 @@
 </head>
 <body class="antialiased text-gray-800 bg-gray-50">
 
-  <!-- NAVBAR -->
+  <!-- NAVIGATION -->
   <header class="fixed top-0 inset-x-0 bg-white shadow z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
       <a href="#home" class="font-bold text-xl">Brian Schmidt</a>
@@ -54,11 +54,14 @@
 
   <!-- ABOUT -->
   <section id="about" class="py-20 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        I’m a data analyst focused on renewable energy, with hands-on experience building end-to-end pipelines that transform raw sensor and API data into actionable KPIs and interactive dashboards. My passion lies in making complex energy trends accessible to both technical and non-technical audiences through clear visualizations and automated workflows.
-      </p>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:space-x-8">
+      <img src="assets/profile.jpg" alt="Brian Schmidt" class="w-40 h-40 rounded-full shadow-lg mb-6 md:mb-0" />
+      <div>
+        <h2 class="text-3xl font-bold mb-4">About Me</h2>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          I’m a data analyst specializing in renewable energy, transforming raw sensor and API data into automated KPI pipelines and shareable dashboards. With a background in Excel, Python, and visualization, I help teams gain actionable insights and streamline reporting workflows.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -68,66 +71,51 @@
       <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
       <div class="grid gap-12 md:grid-cols-2">
 
-        <!-- Wind KPI Dashboard card -->
+        <!-- Wind KPI Dashboard -->
         <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4">Wind-Turbine Performance ETL & KPI Dashboard</h3>
-            <p class="text-gray-600 mb-4">
-              Python ETL pipeline ingests wind sensor data, cleans and computes daily/monthly KPIs, and visualizes performance in Excel dashboards.
-            </p>
-            <a href="https://github.com/bschmid512/portfolio_wind_etl" class="text-blue-600 hover:underline">Source Code</a>
+            <h3 class="text-xl font-semibold mb-3">Wind-Turbine Performance ETL & KPI Dashboard</h3>
+            <p class="text-gray-600 mb-4">Python ETL pipeline ingests raw turbine sensor CSVs, cleans data, computes daily/monthly KPIs, and generates Excel dashboards with charts.</p>
+            <a href="https://github.com/bschmid512/portfolio_wind_etl" class="text-blue-600 hover:underline">View Source</a>
           </div>
         </article>
 
-        <!-- Turbine Monitor Simulator card -->
+        <!-- Real-Time Simulator -->
         <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4">Real-Time Turbine Sensor Simulator</h3>
-            <p class="text-gray-600 mb-4">
-              Node.js/Socket.io web app simulating live turbine sensor feeds, visualizing power output and status in real time.
-            </p>
-            <a href="#" class="text-gray-400 cursor-not-allowed">Source Code (private)</a>
+            <h3 class="text-xl font-semibold mb-3">Real-Time Turbine Sensor Simulator</h3>
+            <p class="text-gray-600 mb-4">Node.js and Socket.io application that simulates live turbine sensor readings, displaying power output and status charts in real time.</p>
+            <a href="#" class="text-gray-400 cursor-not-allowed">Source (private)</a>
           </div>
         </article>
 
-        <!-- SOP Tracker card -->
+        <!-- SOP Tracker -->
         <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4">Standard-Operating-Procedure Tracker</h3>
-            <p class="text-gray-600 mb-4">
-              Excel-based tracker with VBA macros to manage, version, and audit SOP documents across teams.
-            </p>
-            <a href="#" class="text-gray-400 cursor-not-allowed">Demo Link</a>
+            <h3 class="text-xl font-semibold mb-3">SOP Tracker with VBA</h3>
+            <p class="text-gray-600 mb-4">An Excel-based tracker enhanced with VBA macros for managing, versioning, and auditing standard operating procedures across teams.</p>
+            <a href="#" class="text-gray-400 cursor-not-allowed">Details (private)</a>
           </div>
         </article>
 
-        <!-- Live Energy Dashboard -->
+        <!-- Energy Dashboard -->
         <article class="bg-gray-100 rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
           <div class="p-6">
-            <h3 class="text-xl font-semibold mb-4">US Electricity Generation & Stability</h3>
-            <p class="text-gray-600 mb-4">
-              Interactive, live Streamlit dashboard showing monthly generation by source and renewables share. Click “Full Screen” for best experience.
-            </p>
-            <button onclick="document.getElementById('energyDetails').classList.toggle('hidden')" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none">
-              Show Details
-            </button>
-            <div id="energyDetails" class="hidden p-4 bg-gray-50 rounded mb-6">
-              <ol class="list-decimal list-inside mb-4 space-y-2 text-gray-700">
-                <li><strong>Gathering the data:</strong> We tap into the U.S. Energy Information Administration’s public API to fetch up-to-date monthly figures for each power source.</li>
-                <li><strong>Cleaning & preparing:</strong> A Python script reads the raw data, converts month codes into dates, calculates each source’s share of total generation, and outputs a clean CSV.</li>
-                <li><strong>Building the dashboard:</strong> Using Streamlit and Plotly, we load the cleaned data, let visitors filter by source and date, and draw interactive charts directly in their browser.</li>
-                <li><strong>Publishing & embedding:</strong> The app runs on Streamlit Cloud and is seamlessly embedded here via an iframe, always showing the latest results.</li>
+            <h3 class="text-xl font-semibold mb-3">US Electricity Generation & Stability</h3>
+            <p class="text-gray-600 mb-4">Live Streamlit dashboard tracking U.S. electricity mix evolution, with interactive charts of monthly generation by source and renewable share.</p>
+            <button onclick="document.getElementById('energyDetails').classList.toggle('hidden')" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none">Show Details</button>
+            <div id="energyDetails" class="hidden p-4 bg-gray-50 rounded mb-4">
+              <ol class="list-decimal list-inside mb-2 text-gray-700">
+                <li><strong>Data Acquisition:</strong> Fetch monthly generation data via the EIA public API.</li>
+                <li><strong>Data Cleaning:</strong> Convert raw API output to structured CSV, parse dates, and compute shares.</li>
+                <li><strong>Dashboard:</strong> Build interactive charts with Streamlit and Plotly for filtering by source and date.</li>
+                <li><strong>Deployment:</strong> Host on Streamlit Cloud and embed here for live updates.</li>
               </ol>
-              <p class="text-gray-700"><strong>Why it matters:</strong> This project turns raw government data into an intuitive, shareable experience, highlighting seasonal trends and the rapid growth of clean energy in the U.S. electricity mix.</p>
+              <p class="text-gray-700"><strong>Why It Matters:</strong> Transforms government data into an accessible visualization, highlighting the rise of renewables and seasonal trends in the U.S. power mix.</p>
             </div>
           </div>
           <div class="w-full h-96">
-            <iframe
-              src="https://portfoliowindetl-qdx7thsfqfxumbgg7rjfbu.streamlit.app/?embedded=true"
-              class="w-full h-full"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
+            <iframe src="https://portfoliowindetl-qdx7thsfqfxumbgg7rjfbu.streamlit.app/?embedded=true" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
           </div>
         </article>
 
@@ -139,22 +127,23 @@
   <section id="experience" class="py-20 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-8 text-center">Experience</h2>
-      <ul class="space-y-8">
+      <ul class="space-y-8 text-gray-700">
         <li>
-          <h3 class="text-xl font-semibold">Renewables Data Analyst, Azure Energy</h3>
-          <p class="text-gray-600">Jun 2023 – Present</p>
-          <ul class="list-disc list-inside text-gray-600 space-y-1">
-            <li>Built automated ETL pipelines for wind & solar generation metrics.</li>
-            <li>Developed QC logs and KPI dashboards in Python and Excel.</li>
-            <li>Collaborated across teams to define data requirements and reports.</li>
+          <h3 class="text-xl font-semibold">Renewables Data Analyst, AES Corp</h3>
+          <p class="italic text-gray-600 mb-2">Jun 2023 – Present</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Designed and built Python ETL pipelines for wind and solar generation metrics.</li>
+            <li>Automated quality-control logging and KPI reporting in Excel and Python.</li>
+            <li>Enabled stakeholders to visualize performance trends with interactive dashboards.</li>
           </ul>
         </li>
         <li>
           <h3 class="text-xl font-semibold">Data Reporting Intern, GreenGrid Solutions</h3>
-          <p class="text-gray-600">Jan 2022 – May 2023</p>
-          <ul class="list-disc list-inside text-gray-600 space-y-1">
-            <li>Maintained daily generation reports using SQL & Power BI.</li>
-            <li>Improved data accuracy by 15% through validation scripts.</li>
+          <p class="italic text-gray-600 mb-2">Jan 2022 – May 2023</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li>Maintained daily and monthly generation reports using SQL and Power BI.</li>
+            <li>Improved data accuracy by 15% through validation scripts in Python.</li>
+            <li>Collaborated with cross-functional teams to define data requirements.</li>
           </ul>
         </li>
       </ul>
@@ -164,8 +153,8 @@
   <!-- SKILLS -->
   <section id="skills" class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-8 text-center">Skills & Tools</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">Skills &amp; Tools</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-8 text-center text-gray-700">
         <div class="flex flex-col items-center">
           <span class="iconify text-4xl mb-2" data-icon="logos:python"></span>
           <p>Python</p>
@@ -188,7 +177,7 @@
         </div>
         <div class="flex flex-col items-center">
           <span class="iconify text-4xl mb-2" data-icon="logos:git-icon"></span>
-          <p>Git & GitHub</p>
+          <p>Git &amp; GitHub</p>
         </div>
         <div class="flex flex-col items-center">
           <span class="iconify text-4xl mb-2" data-icon="logos:nodejs-icon"></span>
@@ -228,12 +217,12 @@
 
   <!-- FOOTER -->
   <footer class="py-6 text-center text-sm text-gray-500 bg-gray-50">
-    © 2025 Brian Schmidt. Built with Tailwind CSS & GitHub Pages.
+    © 2025 Brian Schmidt. Built with Tailwind CSS &amp; GitHub Pages.
   </footer>
 
   <!-- SCRIPTS -->
   <script>
-    // Mobile menu toggle
+    // Mobile toggle
     document.getElementById('menuBtn').addEventListener('click', function() {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
