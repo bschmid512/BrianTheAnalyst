@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Turbine Monitor | Brian Schmidt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="antialiased bg-gray-50 text-gray-800">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 bg-white/80 backdrop-blur z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto p-4 flex justify-between items-center">
+      <a href="index.html" class="font-semibold">← Back to Portfolio</a>
+      <h1 class="text-lg font-bold">Turbine Monitor Simulator</h1>
+    </div>
+  </header>
+
+  <main class="pt-24 max-w-5xl mx-auto px-4 space-y-12">
+
+    <!-- Site & Slider -->
+    <section>
+      <h2 class="text-2xl font-bold mb-2" id="siteName">Loading…</h2>
+      <div class="flex items-center gap-4">
+        <label for="timeSlider" class="whitespace-nowrap">Time:</label>
+        <input type="range" id="timeSlider" class="flex-1" min="0" max="23" value="0"/>
+        <span id="timeStamp" class="w-40 text-right font-mono"></span>
+      </div>
+    </section>
+
+    <!-- Gauges & Metrics -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <p class="text-sm text-gray-500">Rotor Speed</p>
+        <p id="rotorSpeed" class="text-3xl font-extrabold mt-2">— RPM</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <p class="text-sm text-gray-500">Power</p>
+        <p id="power" class="text-3xl font-extrabold mt-2">— kW</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow text-center">
+        <p class="text-sm text-gray-500">Wind Speed</p>
+        <p id="windSpeed" class="text-3xl font-extrabold mt-2">— m/s</p>
+      </div>
+    </section>
+
+    <!-- Trend Chart -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <canvas id="trendChart" class="w-full h-64"></canvas>
+    </section>
+
+    <!-- Wind Direction Rose -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h3 class="font-semibold mb-2">Wind Direction</h3>
+      <div id="rose" class="h-64 flex items-center justify-center text-gray-500">
+        <!-- We'll draw this with CSS/JS fallback -->
+        <p>(Wind rose placeholder)</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+  (async function(){
+    // 1. Fetch data
+    const res  = await fetch('data/wind-detail.json');
+    const js   = await res.json();
+    const D    = js.detail;
+    document.getElementById('siteName').textContent = js.site;
+    
+    // 2. Build trend line chart
+    const ctx = document.getElementById('trendChart');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: D.map(d=>d.time.slice(11,16)),
+        datasets: [{
+          label: 'Power (kW)',
+          data: D.map(d=>d.power),
+          borderWidth: 2, tension: .3
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { y:{title:{display:true,text:'kW'}}},
+        plugins:{legend:{display:false}}
+      }
+    });
+
+    // 3. Simulator slider
+    const slider = document.getElementById('timeSlider');
+    const stamp  = document.getElementById('timeStamp');
+
+    function update(i){
+      const d = D[i];
+      // Update metrics
+      document.getElementById('rotorSpeed').textContent = d.rotorSpeed.toFixed(1) + ' RPM';
+      document.getElementById('power').textContent      = d.power + ' kW';
+      document.getElementById('windSpeed').textContent  = d.windSpeed.toFixed(1) + ' m/s';
+      // Update timestamp
+      stamp.textContent = new Date(d.time).toLocaleString([], {
+        hour:'2-digit',minute:'2-digit',month:'numeric',day:'numeric'
+      });
+      // Highlight on chart
+      chart.setActiveElements([{datasetIndex:0,index:i}]);
+      chart.tooltip.setActiveElements([{datasetIndex:0,index:i}], {x:0,y:0});
+      chart.update();
+      // Optional: draw a simple wind rose sector
+      drawRose(d.direction);
+    }
+
+    slider.max = D.length - 1;
+    slider.addEventListener('input',()=> update(+slider.value));
+    update(0);
+
+    // 4. Simple wind‐rose fallback
+    function drawRose(deg){
+      const container = document.getElementById('rose');
+      container.innerHTML = ''; 
+      const arrow = document.createElement('div');
+      arrow.style.width = '0'; arrow.style.height = '0';
+      arrow.style.border = '20px solid transparent';
+      arrow.style.borderBottom = '30px solid teal';
+      arrow.style.transform = `rotate(${deg}deg)`;
+      container.append(arrow);
+    }
+  })();
+  </script>
+</body>
+</html>
