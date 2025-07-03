@@ -1,0 +1,17 @@
+{
+  "site": "Sky Ridge Wind – 200 MW",
+  "updated": "2025-06-30T12:00:00Z",
+  "kpis": {
+    "availability": 97.4,          // %
+    "capacityFactor": 41.2,        // %
+    "mtdProd": 25_460,             // MWh month-to-date
+    "p50Target": 26_800,           // MWh month-to-date budget
+    "openAlarms": 12
+  },
+  "prodTrend": [
+    {"date":"2025-06-01","mwh":820,"p50":860},
+    {"date":"2025-06-02","mwh":790,"p50":840},
+    ...
+    {"date":"2025-06-30","mwh":870,"p50":900}
+  ]
+}
