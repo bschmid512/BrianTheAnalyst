@@ -96,18 +96,31 @@
             <p class="text-gray-600 mb-4">
               Interactive, live Streamlit dashboard showing monthly generation by source and renewables share. Click “Full Screen” for best experience.
             </p>
+            <!-- Expandable details button -->
+            <button onclick="document.getElementById('energyDetails').classList.toggle('hidden')" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none">
+              Show Details
+            </button>
+            <!-- Hidden expandable content -->
+            <div id="energyDetails" class="hidden p-4 bg-gray-50 rounded mb-6">
+              <ol class="list-decimal list-inside mb-4 space-y-2 text-gray-700">
+                <li><strong>Gathering the data:</strong> We tap into the U.S. Energy Information Administration’s public API to fetch up-to-date monthly figures for each power source.</li>
+                <li><strong>Cleaning & preparing:</strong> A Python script reads the raw data, converts month codes into dates, calculates each source’s share of total generation, and outputs a clean CSV.</li>
+                <li><strong>Building the dashboard:</strong> Using Streamlit and Plotly, we load the cleaned data, let visitors filter by source and date, and draw interactive charts directly in their browser.</li>
+                <li><strong>Publishing & embedding:</strong> The app runs on Streamlit Cloud and is seamlessly embedded here via an iframe, always showing the latest results.</li>
+              </ol>
+              <p class="text-gray-700"><strong>Why it matters:</strong> This project turns raw government data into an intuitive, shareable experience, highlighting seasonal trends and the rapid growth of clean energy in the U.S. electricity mix.</p>
+            </div>
           </div>
           <div class="w-full h-96">
-     <iframe
-  src="https://portfoliowindetl-qdx7thsfqfxumbgg7rjfbu.streamlit.app/?embedded=true"
-  class="w-full h-full"
-  frameborder="0"
-  allowfullscreen
-></iframe>
-
+            <iframe
+              src="https://portfoliowindetl-qd7hsfqxfxumbgg7rjfbu.streamlit.app/?embedded=true"
+              class="w-full h-full"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
           </div>
         </article>
-  
+
       </div>
     </div>
   </section>
@@ -118,22 +131,15 @@
       <h2 class="text-3xl font-bold mb-8 text-center">Experience</h2>
       <ul class="space-y-6">
         <li>
-          <h3 class="text-xl font-semibold">Renewables Data Analyst, AES Corp</h3>
+          <h3 class="text-xl font-semibold">Renewables Data Analyst, Azure Energy</h3>
           <p class="text-gray-600">Jun 2023 – Present</p>
           <ul class="list-disc list-inside text-gray-600">
-            <li>Built ETL pipelines for wind & solar production metrics.</li>
-            <li>Automated QC reports and KPI dashboards in Excel & Python.</li>
-            <li>Collaborated with stakeholders to define data requirements.</li>
+            <li>Built automated ETL pipelines for wind & solar generation metrics.</li>
+            <li>Developed QC logs and KPI dashboards in Python and Excel.</li>
+            <li>Collaborated across teams to define data requirements and reports.</li>
           </ul>
         </li>
-        <li>
-          <h3 class="text-xl font-semibold">Data Reporting Intern, GreenGrid Solutions</h3>
-          <p class="text-gray-600">Jan 2022 – May 2023</p>
-          <ul class="list-disc list-inside text-gray-600">
-            <li>Maintained daily generation reports using SQL & Power BI.</li>
-            <li>Improved data accuracy by 15% through validation scripts.</li>
-          </ul>
-        </li>
+        <!-- Additional experience items... -->
       </ul>
     </div>
   </section>
@@ -142,7 +148,7 @@
   <section id="skills" class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-8 text-center">Skills & Tools</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">        
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-gray-700">
         <div><span class="iconify text-4xl mb-2" data-icon="logos:python"></span><p>Python</p></div>
         <div><span class="iconify text-4xl mb-2" data-icon="logos:tailwindcss"></span><p>Tailwind CSS</p></div>
         <div><span class="iconify text-4xl mb-2" data-icon="logos:powerbi"></span><p>Power BI</p></div>
