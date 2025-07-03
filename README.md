@@ -1,1 +1,0 @@
-# bschmid512.github.io
