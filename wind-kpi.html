@@ -3,109 +3,129 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Brian Schmidt – Data Reporting & Renewable-Energy Analyst Portfolio" />
-  <title>Brian Schmidt | Data Analyst</title>
+  <title>Wind Farm KPI Dashboard | Brian Schmidt</title>
+  <meta name="description"
+        content="Live KPI dashboard for Sky Ridge Wind – availability, capacity factor, production vs P50 and open alarms.">
 
-  <!-- Tailwind (v3 CDN) -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Favicon (optional) -->
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
+
 <body class="antialiased text-gray-800 bg-gray-50">
 
-  <!-- ========== Navbar ========== -->
+  <!-- ========= Navbar (same style as index) ========= -->
   <header class="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-      <a href="#home" class="text-xl font-semibold">Brian&nbsp;Schmidt</a>
+      <a href="index.html#home" class="text-xl font-semibold">Brian&nbsp;Schmidt</a>
+      <nav class="hidden md:flex gap-8 text-sm">
+        <a href="index.html#projects"  class="hover:text-blue-600">Projects</a>
+        <a href="index.html#contact"   class="hover:text-blue-600">Contact</a>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-gray-200 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-6 w-6" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" class="md:hidden hidden bg-white border-t">
+      <a href="index.html#projects" class="block px-6 py-3 hover:bg-gray-100">Projects</a>
+      <a href="index.html#contact"  class="block px-6 py-3 hover:bg-gray-100">Contact</a>
+    </nav>
+  </header>
 
-    <section class="container mx-auto pt-28 pb-16" id="windApp">
-  <!-- Heading -->
-  <h1 class="text-4xl font-bold mb-2" id="siteName">Wind Farm KPI Dashboard</h1>
-  <p class="text-gray-500 mb-8" id="stamp">Loading …</p>
+  <!-- ========= App ========= -->
+  <main id="windApp" class="pt-32 pb-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-  <!-- KPI cards -->
-  <div class="grid gap-6 md:grid-cols-5 mb-12">
-    <template id="kpiTpl">
-      <div class="bg-white rounded-xl shadow p-6 text-center">
-        <p class="text-sm uppercase tracking-wide text-gray-500"></p>
-        <p class="text-3xl font-extrabold mt-2"></p>
-      </div>
-    </template>
-  </div>
+    <!-- Heading -->
+    <h1 id="siteName" class="text-3xl font-bold mb-1">Wind Farm KPI Dashboard</h1>
+    <p id="stamp" class="text-gray-500 mb-8">Loading…</p>
 
-  <!-- Trend chart -->
-  <canvas id="trendChart" class="bg-white rounded-xl shadow w-full h-96"></canvas>
-</section>
+    <!-- KPI grid -->
+    <div class="grid gap-6 md:grid-cols-5 mb-12">
+      <!-- template cloned by JS -->
+      <template id="kpiTpl">
+        <div class="bg-white rounded-xl shadow p-6 text-center">
+          <p class="text-sm uppercase tracking-wide text-gray-500"></p>
+          <p class="text-3xl font-extrabold mt-2"></p>
+        </div>
+      </template>
+    </div>
 
-<!-- Chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- Trend chart -->
+    <canvas id="trendChart" class="bg-white rounded-xl shadow w-full h-96"></canvas>
+  </main>
 
-<script>
-(async () => {
-  /* 1. Fetch JSON */
-  const res   = await fetch('https://raw.githubusercontent.com/yourusername/yourrepo/main/data/wind-kpi.json');
-  const data  = await res.json();
-
-  /* 2. Populate static text */
-  document.getElementById('siteName').textContent = data.site;
-  document.getElementById('stamp').textContent    = `Updated ${new Date(data.updated).toLocaleString()}`;
-
-  /* 3. Render KPI cards */
-  const grid   = document.querySelector('#windApp .grid');
-  const tpl    = document.getElementById('kpiTpl').content;
-  const fmt    = (v, u='') => Intl.NumberFormat().format(v) + u;
-
-  const metrics = [
-    ['Availability',    fmt(data.kpis.availability, '%')],
-    ['Capacity Factor', fmt(data.kpis.capacityFactor, '%')],
-    ['MTD Prod',        fmt(data.kpis.mtdProd, ' MWh')],
-    ['P50 Target',      fmt(data.kpis.p50Target, ' MWh')],
-    ['Open Alarms',     fmt(data.kpis.openAlarms)]
-  ];
-
-  metrics.forEach(([label,val])=>{
-    const card = tpl.cloneNode(true);
-    card.querySelector('p').textContent = label;
-    card.querySelector('p + p').textContent = val;
-    grid.append(card);
-  });
-
-  /* 4. Build trend arrays */
-  const labels = data.prodTrend.map(d=>d.date);
-  const actual = data.prodTrend.map(d=>d.mwh);
-  const target = data.prodTrend.map(d=>d.p50);
-
-  /* 5. Draw Chart.js line chart */
-  new Chart(document.getElementById('trendChart'),{
-    type:'line',
-    data:{
-      labels,
-      datasets:[
-        {label:'Actual MWh', data:actual, tension:.3, borderWidth:2},
-        {label:'P50 Target', data:target, tension:.3, borderDash:[6,4], borderWidth:2}
-      ]
-    },
-    options:{
-      responsive:true,
-      scales:{y:{title:{text:'MWh',display:true}}},
-      plugins:{legend:{position:'bottom'}}
-    }
-  });
-})();
-</script>
-
-  <!-- ========== Footer ========== -->
-  <footer class="py-6 text-center text-sm text-gray-500 bg-gray-50">
-    © 2025 Brian Schmidt. Built with Tailwind CSS & GitHub Pages.
-  </footer>
-
-  <!-- ========== Scripts ========== -->
+  <!-- ========= Scripts ========= -->
   <script>
     /* Mobile menu toggle */
-    const btn  = document.getElementById('menuBtn');
-    const menu = document.getElementById('mobileMenu');
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    document.getElementById('menuBtn')
+            .addEventListener('click', () =>
+              document.getElementById('mobileMenu').classList.toggle('hidden'));
+
+    /* KPI app */
+    (async () => {
+      // ---- 1. Fetch JSON data ---------------------------------------------
+      // Replace the raw URL with your repo & path
+      const url = 'https://raw.githubusercontent.com/yourusername/yourrepo/main/data/wind-kpi.json';
+      const res = await fetch(url);
+      if (!res.ok) {
+        document.getElementById('stamp').textContent = 'Failed to load data.';
+        return;
+      }
+      const data = await res.json();
+
+      // ---- 2. Static text --------------------------------------------------
+      document.getElementById('siteName').textContent = data.site || 'Wind Farm KPI Dashboard';
+      document.getElementById('stamp').textContent =
+        'Updated ' + new Date(data.updated).toLocaleString();
+
+      // ---- 3. KPI cards ----------------------------------------------------
+      const grid   = document.querySelector('#windApp .grid');
+      const tpl    = document.getElementById('kpiTpl').content;
+      const format = (v, u='') => Intl.NumberFormat().format(v) + u;
+
+      const metrics = [
+        ['Availability',    format(data.kpis.availability, '%')],
+        ['Capacity Factor', format(data.kpis.capacityFactor, '%')],
+        ['MTD Prod',        format(data.kpis.mtdProd, ' MWh')],
+        ['P50 Target',      format(data.kpis.p50Target, ' MWh')],
+        ['Open Alarms',     format(data.kpis.openAlarms)]
+      ];
+
+      metrics.forEach(([label, val]) => {
+        const card = tpl.cloneNode(true);
+        card.querySelector('p').textContent         = label;
+        card.querySelector('p + p').textContent     = val;
+        grid.append(card);
+      });
+
+      // ---- 4. Trend chart --------------------------------------------------
+      const labels = data.prodTrend.map(d => d.date);
+      const actual = data.prodTrend.map(d => d.mwh);
+      const target = data.prodTrend.map(d => d.p50);
+
+      new Chart(document.getElementById('trendChart'), {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Actual MWh', data: actual, tension: .3, borderWidth: 2 },
+            { label: 'P50 Target', data: target, tension: .3,
+              borderDash: [6, 4], borderWidth: 2 }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: { y: { title: { display: true, text: 'MWh' } } },
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+    })();
   </script>
 </body>
 </html>
