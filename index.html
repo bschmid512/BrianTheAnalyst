@@ -18,6 +18,7 @@
       <a href="#home" class="font-bold text-xl">Brian Schmidt</a>
       <nav class="hidden md:flex space-x-6">
         <a href="#home" class="hover:text-blue-600">Home</a>
+        <a href="#about" class="hover:text-blue-600">About</a>
         <a href="#projects" class="hover:text-blue-600">Projects</a>
         <a href="#experience" class="hover:text-blue-600">Experience</a>
         <a href="#skills" class="hover:text-blue-600">Skills</a>
@@ -31,6 +32,7 @@
     </div>
     <nav id="mobileMenu" class="md:hidden hidden bg-white border-t">
       <a href="#home" class="block px-6 py-3 hover:bg-gray-100">Home</a>
+      <a href="#about" class="block px-6 py-3 hover:bg-gray-100">About</a>
       <a href="#projects" class="block px-6 py-3 hover:bg-gray-100">Projects</a>
       <a href="#experience" class="block px-6 py-3 hover:bg-gray-100">Experience</a>
       <a href="#skills" class="block px-6 py-3 hover:bg-gray-100">Skills</a>
@@ -47,6 +49,16 @@
     <div class="mt-6 flex justify-center gap-6">
       <a href="#contact" class="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Hire&nbsp;Me</a>
       <a href="assets/Brian_Schmidt_Resume.pdf" class="px-6 py-2 rounded border border-blue-600 text-blue-600 hover:bg-blue-50">Resume</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        I’m a data analyst focused on renewable energy, with hands-on experience building end-to-end pipelines that transform raw sensor and API data into actionable KPIs and interactive dashboards. My passion lies in making complex energy trends accessible to both technical and non-technical audiences through clear visualizations and automated workflows.
+      </p>
     </div>
   </section>
 
@@ -72,7 +84,7 @@
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-4">Real-Time Turbine Sensor Simulator</h3>
             <p class="text-gray-600 mb-4">
-              Node.js/Socket.io powered web app simulating live turbine sensor feeds, visualizing power output and status in real time.
+              Node.js/Socket.io web app simulating live turbine sensor feeds, visualizing power output and status in real time.
             </p>
             <a href="#" class="text-gray-400 cursor-not-allowed">Source Code (private)</a>
           </div>
@@ -96,11 +108,9 @@
             <p class="text-gray-600 mb-4">
               Interactive, live Streamlit dashboard showing monthly generation by source and renewables share. Click “Full Screen” for best experience.
             </p>
-            <!-- Expandable details button -->
             <button onclick="document.getElementById('energyDetails').classList.toggle('hidden')" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none">
               Show Details
             </button>
-            <!-- Hidden expandable content -->
             <div id="energyDetails" class="hidden p-4 bg-gray-50 rounded mb-6">
               <ol class="list-decimal list-inside mb-4 space-y-2 text-gray-700">
                 <li><strong>Gathering the data:</strong> We tap into the U.S. Energy Information Administration’s public API to fetch up-to-date monthly figures for each power source.</li>
@@ -129,17 +139,24 @@
   <section id="experience" class="py-20 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-8 text-center">Experience</h2>
-      <ul class="space-y-6">
+      <ul class="space-y-8">
         <li>
           <h3 class="text-xl font-semibold">Renewables Data Analyst, Azure Energy</h3>
           <p class="text-gray-600">Jun 2023 – Present</p>
-          <ul class="list-disc list-inside text-gray-600">
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
             <li>Built automated ETL pipelines for wind & solar generation metrics.</li>
             <li>Developed QC logs and KPI dashboards in Python and Excel.</li>
             <li>Collaborated across teams to define data requirements and reports.</li>
           </ul>
         </li>
-        <!-- Additional experience items... -->
+        <li>
+          <h3 class="text-xl font-semibold">Data Reporting Intern, GreenGrid Solutions</h3>
+          <p class="text-gray-600">Jan 2022 – May 2023</p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>Maintained daily generation reports using SQL & Power BI.</li>
+            <li>Improved data accuracy by 15% through validation scripts.</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </section>
@@ -148,15 +165,39 @@
   <section id="skills" class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-8 text-center">Skills & Tools</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-gray-700">
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:python"></span><p>Python</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:tailwindcss"></span><p>Tailwind CSS</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:powerbi"></span><p>Power BI</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:excel"></span><p>Excel (VBA)</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:streamlit-icon"></span><p>Streamlit</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:git-icon"></span><p>Git & GitHub</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:nodejs-icon"></span><p>Node.js</p></div>
-        <div><span class="iconify text-4xl mb-2" data-icon="logos:postgresql"></span><p>PostgreSQL</p></div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-8">
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:python"></span>
+          <p>Python</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:streamlit-icon"></span>
+          <p>Streamlit</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:powerbi"></span>
+          <p>Power BI</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:excel"></span>
+          <p>Excel (VBA)</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:tailwindcss"></span>
+          <p>Tailwind CSS</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:git-icon"></span>
+          <p>Git & GitHub</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:nodejs-icon"></span>
+          <p>Node.js</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="iconify text-4xl mb-2" data-icon="logos:postgresql"></span>
+          <p>PostgreSQL</p>
+        </div>
       </div>
     </div>
   </section>
