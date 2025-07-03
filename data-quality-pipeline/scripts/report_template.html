@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>QC Report – {{ generated_at }}</title>
+  <style>
+    body { font-family: sans-serif; }
+    table { border-collapse: collapse; width: 100%; }
+    th,td { border:1px solid #ccc; padding:8px; text-align:left; }
+    th { background:#f4f4f4; }
+    .issues { color: #b00; }
+  </style>
+</head>
+<body>
+  <h1>Data-Quality Report</h1>
+  <p>Generated at {{ generated_at }}</p>
+
+  <table>
+    <tr>
+      <th>File</th>
+      <th>Raw Rows</th>
+      <th>Clean Rows</th>
+      <th>Issues</th>
+    </tr>
+    {% for r in reports %}
+    <tr>
+      <td>{{ r.file }}</td>
+      <td>{{ r.rows_raw }}</td>
+      <td>{{ r.rows_clean }}</td>
+      <td class="issues">
+        {% if r.issues %}
+          <ul>
+          {% for i in r.issues %}<li>{{ i }}</li>{% endfor %}
+          </ul>
+        {% else %}
+          ✓
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
