@@ -1,28 +1,174 @@
 {
-  "site": "Sky Ridge Wind – 200 MW",
+  "site": "Sky Ridge Wind \u2013 200 MW",
   "updated": "2025-07-02T12:30:00Z",
   "detail": [
     {
       "time": "2025-07-01T00:00:00Z",
-      "rotorSpeed": 5.7,
-      "power": 5400,
-      "windSpeed": 3.9,
-      "direction": 135
+      "rotorSpeed": 6.6,
+      "power": 8877,
+      "windSpeed": 5.5,
+      "direction": 172
     },
     {
       "time": "2025-07-01T01:00:00Z",
-      "rotorSpeed": 6.2,
-      "power": 6800,
-      "windSpeed": 4.6,
-      "direction": 140
+      "rotorSpeed": 5.6,
+      "power": 5352,
+      "windSpeed": 3.1,
+      "direction": 5
     },
     {
       "time": "2025-07-01T02:00:00Z",
+      "rotorSpeed": 5.4,
+      "power": 4463,
+      "windSpeed": 4.1,
+      "direction": 239
+    },
+    {
+      "time": "2025-07-01T03:00:00Z",
+      "rotorSpeed": 6.2,
+      "power": 7568,
+      "windSpeed": 3.4,
+      "direction": 58
+    },
+    {
+      "time": "2025-07-01T04:00:00Z",
+      "rotorSpeed": 6.7,
+      "power": 7766,
+      "windSpeed": 4.6,
+      "direction": 294
+    },
+    {
+      "time": "2025-07-01T05:00:00Z",
+      "rotorSpeed": 6.3,
+      "power": 7530,
+      "windSpeed": 3.9,
+      "direction": 357
+    },
+    {
+      "time": "2025-07-01T06:00:00Z",
       "rotorSpeed": 5.9,
-      "power": 6200,
+      "power": 7873,
+      "windSpeed": 4.8,
+      "direction": 268
+    },
+    {
+      "time": "2025-07-01T07:00:00Z",
+      "rotorSpeed": 6.6,
+      "power": 5452,
+      "windSpeed": 6.0,
+      "direction": 54
+    },
+    {
+      "time": "2025-07-01T08:00:00Z",
+      "rotorSpeed": 6.4,
+      "power": 5342,
+      "windSpeed": 3.7,
+      "direction": 197
+    },
+    {
+      "time": "2025-07-01T09:00:00Z",
+      "rotorSpeed": 6.7,
+      "power": 8522,
+      "windSpeed": 4.8,
+      "direction": 219
+    },
+    {
+      "time": "2025-07-01T10:00:00Z",
+      "rotorSpeed": 6.3,
+      "power": 4412,
+      "windSpeed": 6.0,
+      "direction": 294
+    },
+    {
+      "time": "2025-07-01T11:00:00Z",
+      "rotorSpeed": 6.8,
+      "power": 7398,
+      "windSpeed": 5.4,
+      "direction": 267
+    },
+    {
+      "time": "2025-07-01T12:00:00Z",
+      "rotorSpeed": 6.9,
+      "power": 8583,
+      "windSpeed": 5.6,
+      "direction": 310
+    },
+    {
+      "time": "2025-07-01T13:00:00Z",
+      "rotorSpeed": 6.3,
+      "power": 7066,
+      "windSpeed": 3.7,
+      "direction": 122
+    },
+    {
+      "time": "2025-07-01T14:00:00Z",
+      "rotorSpeed": 6.1,
+      "power": 5008,
+      "windSpeed": 4.9,
+      "direction": 169
+    },
+    {
+      "time": "2025-07-01T15:00:00Z",
+      "rotorSpeed": 5.8,
+      "power": 7181,
+      "windSpeed": 4.2,
+      "direction": 154
+    },
+    {
+      "time": "2025-07-01T16:00:00Z",
+      "rotorSpeed": 6.0,
+      "power": 4096,
+      "windSpeed": 3.3,
+      "direction": 328
+    },
+    {
+      "time": "2025-07-01T17:00:00Z",
+      "rotorSpeed": 6.7,
+      "power": 8283,
+      "windSpeed": 4.5,
+      "direction": 309
+    },
+    {
+      "time": "2025-07-01T18:00:00Z",
+      "rotorSpeed": 6.8,
+      "power": 4653,
+      "windSpeed": 4.8,
+      "direction": 295
+    },
+    {
+      "time": "2025-07-01T19:00:00Z",
+      "rotorSpeed": 5.1,
+      "power": 6816,
       "windSpeed": 4.3,
-      "direction": 142
+      "direction": 244
+    },
+    {
+      "time": "2025-07-01T20:00:00Z",
+      "rotorSpeed": 5.0,
+      "power": 8871,
+      "windSpeed": 4.1,
+      "direction": 221
+    },
+    {
+      "time": "2025-07-01T21:00:00Z",
+      "rotorSpeed": 5.6,
+      "power": 8974,
+      "windSpeed": 4.2,
+      "direction": 1
+    },
+    {
+      "time": "2025-07-01T22:00:00Z",
+      "rotorSpeed": 5.8,
+      "power": 4199,
+      "windSpeed": 3.6,
+      "direction": 285
+    },
+    {
+      "time": "2025-07-01T23:00:00Z",
+      "rotorSpeed": 6.8,
+      "power": 8468,
+      "windSpeed": 3.4,
+      "direction": 100
     }
-   
   ]
 }
