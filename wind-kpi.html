@@ -71,7 +71,7 @@
     (async () => {
       // ---- 1. Fetch JSON data ---------------------------------------------
       // Replace the raw URL with your repo & path
-      const url = 'https://raw.githubusercontent.com/yourusername/yourrepo/main/data/wind-kpi.json';
+      const url = 'data/wind-kpi.json';
       const res = await fetch(url);
       if (!res.ok) {
         document.getElementById('stamp').textContent = 'Failed to load data.';
