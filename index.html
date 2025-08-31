@@ -82,14 +82,33 @@
       <h2 class="text-3xl font-bold mb-12 text-center">Featured Projects</h2>
       <div class="grid gap-12 md:grid-cols-2">
 
-        <!-- Wind KPI Dashboard -->
-        <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-3">Wind-Turbine Performance ETL & KPI Dashboard</h3>
-            <p class="text-gray-600 mb-4">Python ETL pipeline ingests raw turbine sensor CSVs, cleans data, computes daily/monthly KPIs, and generates Excel dashboards with charts.</p>
-            <a href="https://github.com/bschmid512/portfolio_wind_etl" class="text-blue-600 hover:underline">View Source</a>
-          </div>
-        </article>
+    <!-- Coffee Operations Dashboard -->
+<article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
+  <div class="p-6">
+    <h3 class="text-xl font-semibold mb-3">Coffee Operations Command Center</h3>
+    <p class="text-gray-600 mb-4">Business operations dashboard for multi-location coffee chain management. Features inventory tracking, project coordination, performance analytics, and cross-functional task management.</p>
+    <button onclick="document.getElementById('coffeeDetails').classList.toggle('hidden')" class="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none">
+      Show Details
+    </button>
+    <div id="coffeeDetails" class="hidden p-4 bg-gray-50 rounded mb-4">
+      <ul class="list-disc list-inside mb-2 text-gray-700 space-y-1">
+        <li><strong>Revenue Tracking:</strong> Real-time performance vs targets with variance analysis and gap identification.</li>
+        <li><strong>Inventory Management:</strong> Multi-location stock monitoring with automated reorder alerts and critical item tracking.</li>
+        <li><strong>Project Coordination:</strong> New product rollout tracking with progress monitoring and blocker escalation.</li>
+        <li><strong>Cross-Functional Tasks:</strong> Department coordination dashboard for sales, operations, IT, and marketing alignment.</li>
+        <li><strong>Performance Analytics:</strong> Location comparison, operational efficiency metrics, and actionable insights.</li>
+      </ul>
+      <p class="text-gray-700"><strong>Business Impact:</strong> Demonstrates business operations expertise through comprehensive tracking systems, proactive issue identification, and cross-departmental coordination - perfect for operations analyst roles.</p>
+    </div>
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded">Business Operations</span>
+      <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Project Coordination</span>
+      <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Performance Analytics</span>
+      <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Cross-Functional</span>
+    </div>
+    <a href="coffee-operations.html" target="_blank" class="text-blue-600 hover:underline">View Live Demo</a>
+  </div>
+</article>
 
         <!-- Real-Time Simulator -->
         <article class="bg-white rounded-lg shadow-lg hover:shadow-xl transition overflow-hidden">
