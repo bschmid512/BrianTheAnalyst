@@ -1,0 +1,477 @@
+import React, { useState, useEffect } from 'react';
+import { Coffee, TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Package, DollarSign, Users, MapPin, Calendar, Target, BarChart3, Clock, Truck } from 'lucide-react';
+
+const CoffeeOperationsDashboard = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [selectedLocation, setSelectedLocation] = useState('all');
+  const [timeRange, setTimeRange] = useState('week');
+
+  // Mock operational data
+  const operationalData = {
+    locations: {
+      'store-001': { name: 'Downtown HQ', city: 'Nashville, TN', manager: 'Sarah Wilson' },
+      'store-002': { name: 'Airport Terminal', city: 'Charlotte, NC', manager: 'Mike Rodriguez' },
+      'store-003': { name: 'University District', city: 'Austin, TX', manager: 'Jennifer Lee' },
+      'store-004': { name: 'Military Base', city: 'San Antonio, TX', manager: 'David Thompson' }
+    },
+    
+    revenueTargets: {
+      week: { target: 125000, actual: 118500, variance: -5.2 },
+      month: { target: 520000, actual: 487300, variance: -6.3 },
+      quarter: { target: 1560000, actual: 1425600, variance: -8.6 }
+    },
+
+    inventory: [
+      { item: 'Colombian Dark Roast', stock: 245, reorderPoint: 300, status: 'low', location: 'store-001', lastRestock: '2 days ago' },
+      { item: 'Patriot Blend Medium', stock: 450, reorderPoint: 200, status: 'good', location: 'store-001', lastRestock: '1 week ago' },
+      { item: 'Freedom Fuel Light', stock: 180, reorderPoint: 250, status: 'critical', location: 'store-002', lastRestock: '5 days ago' },
+      { item: 'Veteran Espresso', stock: 320, reorderPoint: 150, status: 'good', location: 'store-002', lastRestock: '3 days ago' },
+      { item: 'Liberty Decaf', stock: 95, reorderPoint: 100, status: 'critical', location: 'store-003', lastRestock: '1 week ago' },
+      { item: 'Defender Dark', stock: 380, reorderPoint: 200, status: 'good', location: 'store-003', lastRestock: '2 days ago' }
+    ],
+
+    newProductRollouts: [
+      { product: 'Tactical Cold Brew', status: 'in-progress', completion: 75, locations: ['store-001', 'store-002'], dueDate: '2025-09-15', blocker: 'None' },
+      { product: 'Ranger Seasonal Blend', status: 'pending', completion: 25, locations: ['store-003', 'store-004'], dueDate: '2025-09-30', blocker: 'Supply chain delay' },
+      { product: 'First Responder Roast', status: 'completed', completion: 100, locations: ['store-001', 'store-002', 'store-003'], dueDate: '2025-08-20', blocker: 'None' }
+    ],
+
+    dailyMetrics: {
+      'store-001': { revenue: 3200, transactions: 145, avgTicket: 22.07, satisfaction: 4.6, brewTime: 3.2 },
+      'store-002': { revenue: 2800, transactions: 128, avgTicket: 21.88, satisfaction: 4.4, brewTime: 3.8 },
+      'store-003': { revenue: 3100, transactions: 165, avgTicket: 18.79, satisfaction: 4.7, brewTime: 3.1 },
+      'store-004': { revenue: 2900, transactions: 138, avgTicket: 21.01, satisfaction: 4.5, brewTime: 3.5 }
+    },
+
+    crossFunctionalTasks: [
+      { task: 'Q3 Marketing Sample Distribution', department: 'Marketing/Operations', status: 'on-track', dueDate: '2025-09-10', owner: 'Marketing Team' },
+      { task: 'New POS System Rollout', department: 'IT/Operations', status: 'blocked', dueDate: '2025-09-20', owner: 'IT Department' },
+      { task: 'Seasonal Menu Launch', department: 'Product/Sales', status: 'in-progress', dueDate: '2025-09-25', owner: 'Product Team' },
+      { task: 'Holiday Staffing Plan', department: 'HR/Operations', status: 'pending', dueDate: '2025-10-01', owner: 'HR Department' }
+    ]
+  };
+
+  const getStatusColor = (status) => {
+    switch(status) {
+      case 'good': case 'completed': case 'on-track': return 'text-green-600';
+      case 'low': case 'in-progress': return 'text-yellow-600';
+      case 'critical': case 'blocked': case 'pending': return 'text-red-600';
+      default: return 'text-gray-600';
+    }
+  };
+
+  const getStatusBadge = (status) => {
+    switch(status) {
+      case 'good': case 'completed': case 'on-track': return 'bg-green-100 text-green-800';
+      case 'low': case 'in-progress': return 'bg-yellow-100 text-yellow-800';
+      case 'critical': case 'blocked': case 'pending': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const calculateTotalRevenue = () => {
+    return Object.values(operationalData.dailyMetrics).reduce((sum, store) => sum + store.revenue, 0);
+  };
+
+  const calculateAvgSatisfaction = () => {
+    const scores = Object.values(operationalData.dailyMetrics).map(store => store.satisfaction);
+    return (scores.reduce((sum, score) => sum + score, 0) / scores.length).toFixed(1);
+  };
+
+  const getCriticalInventoryCount = () => {
+    return operationalData.inventory.filter(item => item.status === 'critical').length;
+  };
+
+  const getBlockedProjectsCount = () => {
+    return operationalData.crossFunctionalTasks.filter(task => task.status === 'blocked').length;
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 p-6">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center justify-center gap-3">
+            <Coffee className="text-amber-700" size={40} />
+            Coffee Operations Command Center
+          </h1>
+          <p className="text-gray-600 text-lg">Real-time business operations tracking & cross-functional coordination</p>
+        </div>
+
+        {/* Key Metrics Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <DollarSign className="mx-auto mb-3 text-green-600" size={32} />
+            <div className="text-2xl font-bold text-gray-800">${calculateTotalRevenue().toLocaleString()}</div>
+            <div className="text-sm text-gray-500">Daily Revenue</div>
+            <div className={`text-sm mt-1 ${operationalData.revenueTargets.week.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+              {operationalData.revenueTargets.week.variance >= 0 ? '+' : ''}{operationalData.revenueTargets.week.variance}% vs Target
+            </div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <Users className="mx-auto mb-3 text-blue-600" size={32} />
+            <div className="text-2xl font-bold text-gray-800">{calculateAvgSatisfaction()}/5.0</div>
+            <div className="text-sm text-gray-500">Avg Satisfaction</div>
+            <div className="text-sm text-green-600 mt-1">+0.3 vs Last Week</div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <Package className="mx-auto mb-3 text-amber-600" size={32} />
+            <div className="text-2xl font-bold text-gray-800">{getCriticalInventoryCount()}</div>
+            <div className="text-sm text-gray-500">Critical Stock Items</div>
+            <div className="text-sm text-red-600 mt-1">Requires Attention</div>
+          </div>
+          
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <AlertTriangle className="mx-auto mb-3 text-red-600" size={32} />
+            <div className="text-2xl font-bold text-gray-800">{getBlockedProjectsCount()}</div>
+            <div className="text-sm text-gray-500">Blocked Projects</div>
+            <div className="text-sm text-red-600 mt-1">Need Resolution</div>
+          </div>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex justify-center mb-6">
+          <div className="bg-white rounded-lg p-1 shadow-lg">
+            {['overview', 'inventory', 'projects', 'performance'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-2 rounded-md transition-colors capitalize ${
+                  activeTab === tab 
+                    ? 'bg-amber-600 text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                {tab === 'overview' && <BarChart3 className="inline mr-2" size={16} />}
+                {tab === 'inventory' && <Package className="inline mr-2" size={16} />}
+                {tab === 'projects' && <Target className="inline mr-2" size={16} />}
+                {tab === 'performance' && <TrendingUp className="inline mr-2" size={16} />}
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Overview Tab */}
+        {activeTab === 'overview' && (
+          <div className="space-y-6">
+            {/* Revenue vs Targets */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Target className="text-amber-600" size={24} />
+                Revenue Performance vs Targets
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {Object.entries(operationalData.revenueTargets).map(([period, data]) => (
+                  <div key={period} className="bg-gray-50 rounded-lg p-4">
+                    <div className="text-lg font-semibold capitalize mb-2">{period}</div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <span>Target:</span>
+                        <span className="font-semibold">${data.target.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Actual:</span>
+                        <span className="font-semibold">${data.actual.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Variance:</span>
+                        <span className={`font-bold ${data.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          {data.variance >= 0 ? '+' : ''}{data.variance}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Daily Store Performance */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <MapPin className="text-blue-600" size={24} />
+                Today's Store Performance
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200">
+                      <th className="text-left py-3 px-4">Location</th>
+                      <th className="text-left py-3 px-4">Revenue</th>
+                      <th className="text-left py-3 px-4">Transactions</th>
+                      <th className="text-left py-3 px-4">Avg Ticket</th>
+                      <th className="text-left py-3 px-4">Satisfaction</th>
+                      <th className="text-left py-3 px-4">Brew Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(operationalData.dailyMetrics).map(([storeId, metrics]) => (
+                      <tr key={storeId} className="hover:bg-gray-50 border-b border-gray-100">
+                        <td className="py-3 px-4">
+                          <div className="font-semibold">{operationalData.locations[storeId].name}</div>
+                          <div className="text-sm text-gray-500">{operationalData.locations[storeId].city}</div>
+                        </td>
+                        <td className="py-3 px-4 font-semibold">${metrics.revenue.toLocaleString()}</td>
+                        <td className="py-3 px-4">{metrics.transactions}</td>
+                        <td className="py-3 px-4">${metrics.avgTicket}</td>
+                        <td className="py-3 px-4">
+                          <span className={`font-semibold ${metrics.satisfaction >= 4.5 ? 'text-green-600' : metrics.satisfaction >= 4.0 ? 'text-yellow-600' : 'text-red-600'}`}>
+                            {metrics.satisfaction}/5.0
+                          </span>
+                        </td>
+                        <td className="py-3 px-4">
+                          <span className={`font-semibold ${metrics.brewTime <= 3.5 ? 'text-green-600' : 'text-yellow-600'}`}>
+                            {metrics.brewTime}m
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Inventory Tab */}
+        {activeTab === 'inventory' && (
+          <div className="space-y-6">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-bold flex items-center gap-2">
+                  <Package className="text-amber-600" size={24} />
+                  Inventory Management
+                </h3>
+                <div className="flex gap-2">
+                  <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
+                    {operationalData.inventory.filter(i => i.status === 'critical').length} Critical
+                  </span>
+                  <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
+                    {operationalData.inventory.filter(i => i.status === 'low').length} Low Stock
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid gap-4">
+                {operationalData.inventory.map((item, index) => (
+                  <div key={index} className={`border-l-4 p-4 rounded-lg ${
+                    item.status === 'critical' ? 'border-red-500 bg-red-50' :
+                    item.status === 'low' ? 'border-yellow-500 bg-yellow-50' :
+                    'border-green-500 bg-green-50'
+                  }`}>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-semibold text-gray-800">{item.item}</h4>
+                        <p className="text-sm text-gray-600">{operationalData.locations[item.location].name}</p>
+                        <p className="text-xs text-gray-500">Last restocked: {item.lastRestock}</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold">{item.stock} lbs</div>
+                        <div className="text-sm text-gray-500">Reorder at: {item.reorderPoint}</div>
+                        <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${getStatusBadge(item.status)}`}>
+                          {item.status.toUpperCase()}
+                        </span>
+                      </div>
+                    </div>
+                    {item.status === 'critical' && (
+                      <div className="mt-3 flex items-center gap-2 text-red-600">
+                        <AlertTriangle size={16} />
+                        <span className="text-sm font-medium">URGENT: Reorder immediately</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Projects Tab */}
+        {activeTab === 'projects' && (
+          <div className="space-y-6">
+            {/* New Product Rollouts */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Target className="text-green-600" size={24} />
+                New Product Rollout Tracking
+              </h3>
+              <div className="space-y-4">
+                {operationalData.newProductRollouts.map((product, index) => (
+                  <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <div className="flex justify-between items-start mb-3">
+                      <div>
+                        <h4 className="font-semibold text-gray-800">{product.product}</h4>
+                        <p className="text-sm text-gray-600">
+                          Locations: {product.locations.map(loc => operationalData.locations[loc].name).join(', ')}
+                        </p>
+                        <p className="text-sm text-gray-500">Due: {product.dueDate}</p>
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusBadge(product.status)}`}>
+                        {product.status.replace('-', ' ').toUpperCase()}
+                      </span>
+                    </div>
+                    
+                    <div className="mb-3">
+                      <div className="flex justify-between text-sm mb-1">
+                        <span>Progress</span>
+                        <span>{product.completion}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full ${
+                            product.completion === 100 ? 'bg-green-500' :
+                            product.completion >= 50 ? 'bg-blue-500' : 'bg-yellow-500'
+                          }`}
+                          style={{ width: `${product.completion}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    {product.blocker !== 'None' && (
+                      <div className="flex items-center gap-2 text-red-600 bg-red-50 p-2 rounded">
+                        <AlertTriangle size={16} />
+                        <span className="text-sm font-medium">Blocker: {product.blocker}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Cross-Functional Tasks */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Users className="text-purple-600" size={24} />
+                Cross-Functional Project Coordination
+              </h3>
+              <div className="space-y-3">
+                {operationalData.crossFunctionalTasks.map((task, index) => (
+                  <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition-shadow">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-800">{task.task}</h4>
+                      <p className="text-sm text-gray-600">{task.department} • Owner: {task.owner}</p>
+                      <p className="text-sm text-gray-500">Due: {task.dueDate}</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {task.status === 'blocked' && <AlertTriangle className="text-red-600" size={20} />}
+                      {task.status === 'on-track' && <CheckCircle className="text-green-600" size={20} />}
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusBadge(task.status)}`}>
+                        {task.status.replace('-', ' ').toUpperCase()}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Performance Tab */}
+        {activeTab === 'performance' && (
+          <div className="space-y-6">
+            {/* Location Performance Comparison */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <BarChart3 className="text-blue-600" size={24} />
+                Location Performance Analysis
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Top Performers</h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center p-3 bg-green-50 rounded">
+                      <span className="font-medium">University District</span>
+                      <span className="text-green-600 font-bold">$3,100 • 4.7★</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
+                      <span className="font-medium">Downtown HQ</span>
+                      <span className="text-blue-600 font-bold">$3,200 • 4.6★</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-3 text-amber-600">Areas for Improvement</h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center p-3 bg-yellow-50 rounded">
+                      <span className="font-medium">Airport Terminal</span>
+                      <span className="text-yellow-600 font-bold">Slow brew times (3.8m)</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-red-50 rounded">
+                      <span className="font-medium">Military Base</span>
+                      <span className="text-red-600 font-bold">Below satisfaction target</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Operational Efficiency Metrics */}
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <Clock className="text-purple-600" size={24} />
+                Operational Efficiency Tracking
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-800">3.4m</div>
+                  <div className="text-sm text-gray-500">Average Brew Time</div>
+                  <div className="text-sm text-green-600 mt-1">✓ Within Target (≤4m)</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-800">576</div>
+                  <div className="text-sm text-gray-500">Total Transactions</div>
+                  <div className="text-sm text-blue-600 mt-1">+12% vs Yesterday</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-800">$20.94</div>
+                  <div className="text-sm text-gray-500">Average Ticket</div>
+                  <div className="text-sm text-green-600 mt-1">+$1.20 vs Target</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Action Items Panel */}
+        <div className="mt-8 bg-white rounded-lg shadow-lg p-6">
+          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <AlertTriangle className="text-red-600" size={24} />
+            Priority Action Items
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <h4 className="font-semibold text-red-600">Critical Issues</h4>
+              <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
+                <p className="font-medium">Liberty Decaf critically low at University District</p>
+                <p className="text-sm text-gray-600">Action: Emergency restock needed within 24 hours</p>
+              </div>
+              <div className="bg-red-50 border-l-4 border-red-500 p-3 rounded">
+                <p className="font-medium">POS System Rollout blocked</p>
+                <p className="text-sm text-gray-600">Action: Follow up with IT Department on timeline</p>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <h4 className="font-semibold text-yellow-600">Follow-Up Required</h4>
+              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 rounded">
+                <p className="font-medium">Airport Terminal brew times above target</p>
+                <p className="text-sm text-gray-600">Action: Training session scheduled for Monday</p>
+              </div>
+              <div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
+                <p className="font-medium">Q3 Marketing samples ready for distribution</p>
+                <p className="text-sm text-gray-600">Action: Coordinate with Marketing team this week</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
+export default CoffeeOperationsDashboard;
